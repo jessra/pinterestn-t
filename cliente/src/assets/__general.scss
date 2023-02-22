@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style: none;
+	font-family: "Nunito", sans-serif;
+	&:focus-visible {
+		outline: none;
+	}
+}
+:root {
+	background-color: $fondo;
+  color: $secundario;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+// Text
+.text {
+	&-center {
+		text-align: center;
+	}
+	&-capitalize {
+		text-transform: capitalize;
+	}
+}
+.bold {
+	font-weight: bold;
+}
+.gris-muted {
+	color: $gris-claro;
+}
+
+// Paddings & Margins
+.mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+// Paddings
+@include aroundXY(".px-", "padding-right", "padding-left");
+@include aroundXY(".py-", "padding-top", "padding-bottom");
+
+// Margins
+@include aroundXY(".mx-", "margin-right", "margin-left");
+@include aroundXY(".my-", "margin-top", "margin-bottom");
+
+// Paddings
+@include around-loop(".p-", "padding");
+@include around-loop(".pt-", "padding-top");
+@include around-loop(".pb-", "padding-bottom");
+@include around-loop(".pr-", "padding-right");
+@include around-loop(".pl-", "padding-left");
+
+// Margins
+@include around-loop(".m-", "margin");
+@include around-loop(".mt-", "margin-top");
+@include around-loop(".mb-", "margin-bottom");
+@include around-loop(".mr-", "margin-right");
+@include around-loop(".ml-", "margin-left");
+
+.pt-md-8 {
+	@media screen and (min-width: 768px) {
+		padding-top: 40px !important;
+	}
+}
+
+.d {
+	@include display;
+	@media screen and (min-width: 576px) {
+		&-sm {
+			@include display;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		&-md {
+			@include display;
+		}
+	}
+	@media screen and (min-width: 992px) {
+		&-lg {
+			@include display;
+		}
+	}
+}
+
+.flex- {
+	@include flex;
+	@media screen and (min-width: 576px) {
+		&sm- {
+			@include flex;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		&md- {
+			@include flex;
+		}
+	}
+	@media screen and (min-width: 992px) {
+		&lg- {
+			@include flex;
+		}
+	}
+}
+.align-items- {
+	&center {
+		align-items: center;
+	}
+	&end {
+		align-items: flex-end;
+		lg-end {
+			@media screen and (min-width: 992px) {
+				align-items: flex-end;
+			}
+		}
+	}
+}
+.justify- {
+	&between {
+		justify-content: space-between;
+	}
+	&center {
+		justify-content: center;
+	}
+}
+
+.col- {
+	@include col;
+	@media screen and (min-width: 576px) {
+		&sm- {
+			@include col;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		&md- {
+			@include col;
+		}
+	}
+	@media screen and (min-width: 992px) {
+		&lg- {
+			@include col;
+		}
+	}
+	@media screen and (min-width: 1200px) {
+		&xl- {
+			@include col;
+		}
+	}
+}
+@include z-index(".z-index-");

@@ -1,0 +1,101 @@
+// espaciados
+$max: 20;
+$unit: "px";
+@mixin aroundXY($className, $style1, $style2) {
+	$size: 0;
+	$i: 0;
+	@while $i <= $max {
+		#{$className + $i} {
+			#{$style1}: #{$size + $unit} !important;
+			#{$style2}: #{$size + $unit} !important;
+		}
+		$size: $size + 5;
+		$i: $i + 1;
+	}
+}
+@mixin around-loop($className, $styleName) {
+	$size: 0;
+	$i: 0;
+	@while $i <= $max {
+		#{$className + $i} {
+			#{$styleName}: #{$size + $unit} !important;
+		}
+		$size: $size + 5;
+		$i: $i + 1;
+	}
+}
+
+// Colores
+@mixin colors($class, $nombre ,$estilo, $valor) {
+  #{$class + $nombre} {
+    #{$estilo}: $valor
+  }
+}
+@each $nombre, $valor in $colores {
+  @include colors('.bg-color-', $nombre, 'background-color', $valor);
+  @include colors('.color-', $nombre, 'color', $valor);
+}
+
+// Display
+@mixin display {
+	&-flex {
+		display: flex;
+	}
+	&-inline-block {
+		display: inline-block;
+	}
+	&-block {
+		display: block;
+	}
+	&-none {
+		display: none;
+	}
+}
+
+// Flex
+@mixin flex() {
+	&end {
+		align-items: flex-end;
+	}
+	&column {
+		flex-direction: column;
+	}
+	&row {
+		flex-direction: row;
+	}
+}
+
+// Columnas (Col-)
+@mixin col() {
+	$i: 1;
+	$increase: 8.3;
+	&available {
+		flex-basis: 0;
+		flex-grow: 1;
+		max-width: 100%;
+	}
+	&auto {
+		flex: 0 0 auto;
+		width: auto;
+		max-width: none;
+	}
+	@while $i <= 12 {
+		&#{$i} {
+			flex: 0 0 #{$increase + "%"};
+			max-width: #{$increase + "%"};
+		}
+		$i: $i + 1;
+		$increase: $increase + 8.3;
+	}
+}
+
+// z-index
+@mixin z-index($className) {
+	$index: 0;
+	@while $index <= 100 {
+		#{$className + $index} {
+			z-index: #{$index};
+		}
+		$index: $index + 1;
+	}
+}
