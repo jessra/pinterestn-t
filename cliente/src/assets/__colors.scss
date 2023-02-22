@@ -1,0 +1,23 @@
+$primario: #BD081C;
+$secundario: #111111;
+
+$blanco: #FAFAFA;
+$negro: #1b1b1b;
+$texto-claro: $blanco;
+
+$gris-claro: #6D6A6D;
+
+$like: $primario;
+$like-oscuro: #9e3c4b;
+$alerta: #DF4343;
+
+$fondo: $blanco;
+$fondo-oscuro: $negro;
+$fondo-oscuro-transparente: #1b1b1b8e;
+
+
+$colores: (
+  "primario" $primario,
+  "secundario" $secundario,
+  "texto-claro" $texto-claro,
+);
