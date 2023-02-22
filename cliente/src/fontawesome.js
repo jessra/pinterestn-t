@@ -1,4 +1,12 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {} from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrash,
+  faThumbsUp,
+  faTimes
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add();
+library.add(
+  faTrash,
+  faThumbsUp,
+  faTimes
+);

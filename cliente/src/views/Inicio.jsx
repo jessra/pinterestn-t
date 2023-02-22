@@ -1,7 +1,13 @@
+import ContenedorImg from "../components/ContenedorImg"
+import VerPublicacion from "../components/VerPublicacion"
+import ModalCrear from "../components/ModalCrear"
+
 export function Inicio() {
 	return (
-		<div className="App">
-			<h1>Esto no es pinterest xd</h1>
-		</div>
+		<>
+		<VerPublicacion />
+		{/* <ModalCrear /> */}
+		<ContenedorImg />
+		</>
 	);
 }
