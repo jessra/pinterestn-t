@@ -34,7 +34,7 @@ export default function CrearPublicacion() {
 		formData.append("head", head);
 		formData.append("description", description);
 		formData.append("category", category);
-		formData.append("autor", activo.idUsers);
+		formData.append("autor", '0');
 		fetch("http://localhost:8081/api/aggpublications", {
 			method: "POST",
 			body: formData,
