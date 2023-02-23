@@ -14,7 +14,7 @@ exports.create = (req, name, res) => {
 	}).then(pub => {		
 		res.send(pub);
 	}).catch(err => {
-		res.status(500).send("Error -> " + err);
+		res.send({err});
 	})
 };
 

@@ -17,6 +17,10 @@ module.exports = (sequelize, Sequelize) => {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 		},
+		category: {
+		type: Sequelize.SMALLINT,
+		allowNull: false
+		},
 		img: {
 		type: Sequelize.TEXT,
 		allowNull: false
