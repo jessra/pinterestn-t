@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-export default function CrearPublicacion() {
+export default function CrearPublicacion(mostrarModal) {
 	return (
 		<div className="modal-bg">
       <div className="modal-container">
@@ -22,7 +22,9 @@ export default function CrearPublicacion() {
               <button className="btn-flat primario">Guardar</button>
             </div>
           </div>
-          <FontAwesomeIcon icon='fa-solid fa-times' />
+          <button className='btn-icon align-self-start'>
+            <FontAwesomeIcon icon="fa-solid fa-xmark" />
+          </button>
         </div>
       </div>
 		</div>

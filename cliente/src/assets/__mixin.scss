@@ -13,12 +13,20 @@ $unit: "px";
 		$i: $i + 1;
 	}
 }
-@mixin around-loop($className, $styleName) {
+@mixin around-loop($className, $styleName, $responsive: "") {
 	$size: 0;
 	$i: 0;
 	@while $i <= $max {
-		#{$className + $i} {
-			#{$styleName}: #{$size + $unit} !important;
+		@if $responsive == "md" {
+			@media (min-width: 768px) {
+				#{$className + $i} {
+					#{$styleName}: #{$size + $unit} !important;
+				}
+			}
+		} @else {
+			#{$className + $i} {
+				#{$styleName}: #{$size + $unit} !important;
+			}
 		}
 		$size: $size + 5;
 		$i: $i + 1;
@@ -43,6 +51,9 @@ $unit: "px";
 	}
 	&-inline-block {
 		display: inline-block;
+	}
+	&-inline {
+		display: inline;
 	}
 	&-block {
 		display: block;
