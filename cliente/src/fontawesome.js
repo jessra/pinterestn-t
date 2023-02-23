@@ -9,7 +9,9 @@ import {
   faUser,
   faRightToBracket,
   faPen,
-  faPenToSquare
+  faPenToSquare,
+  faUpload,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -22,5 +24,7 @@ library.add(
   faUser,
   faRightToBracket,
   faPen,
-  faPenToSquare
+  faPenToSquare,
+  faUpload,
+  faCheck
 );
