@@ -14,7 +14,7 @@ export default function Navbar() {
 			<nav className="navbar">
 				<div className="d-none d-md-block contenedor-logo col-2 pb-2">
 					<div className="logo">
-						<img alt="Pinterestn´t" src="./src/assets/logo.png" />
+						<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 					</div>
 				</div>
 				<ul className="d-flex col-available col-lg-8 col-xl-7">
@@ -49,7 +49,7 @@ export default function Navbar() {
 				</ul>
 				<div className="col-4 col-sm-3 col-md-2 contenedor-sesion">
 					<div className="contenedor-img sesion">
-						<img src="./src/imagenesTemporales/perfil.jpg" alt="" />
+						<img src="../src/imagenesTemporales/perfil.jpg" alt="" />
 					</div>
 					<p className="texto-sesion">Gloria Artiga</p>
 				</div>

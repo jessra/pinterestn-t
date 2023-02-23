@@ -48,34 +48,42 @@ function LogIn() {
 	);
 }
 function SingIn() {
-	const { setActivo, listaUsurios } = useContext(Contexto_Funciones);
-	const [user, setUser] = useState("");
-	const [pass, setPass] = useState("");
-	const [img, setImg] = useState({ preview: "", data: "" });
-	const cambioImg = (e) => {
-		const img2 = {
-			preview: URL.createObjectURL(e.target.files[0]),
-			data: e.target.files[0],
-		};
-		setImg(img2);
-	};
-	const enviarImg = async (e) => {
-		e.preventDefault();
-		let formData = new FormData();
-		formData.append("img", img.data);
-		formData.append("name", user);
-		formData.append("pass", pass);
-		const response = await fetch("http://localhost:8081/api/aggusers", {
-			method: "POST",
-			body: formData,
+	const { setActivo, listaUsurios, listaActivo } = useContext(Contexto_Funciones);
+	const [user, setUser] = useState('')
+	const [pass, setPass] = useState('')
+	const [img, setImg] = useState({preview: '', data: ''})
+  const cambioImg = (e) => {
+    const img2 = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    }
+    setImg(img2)
+  }
+  const enviarImg = (e) => {
+    e.preventDefault()
+    let formData = new FormData()
+    formData.append('img', img.data)
+    formData.append('name', user)
+    formData.append('pass', pass)
+    fetch('http://localhost:8081/api/aggusers', {
+      method: 'POST',
+      body: formData,
+    })  
+		.then((response) => response.json())
+		.then((data) => {
+			if (!data.err) {
+				localStorage.setItem('pinterestnt', JSON.stringify(data));
+				listaActivo()
+				listaUsurios()
+				window.location.href = '/';
+			} else {
+				console.log(data.err)
+			}
+		})
+		.catch((error) => {
+			console.log('Error:', error);
 		});
-		if (response.ok) {
-			listaUsurios();
-			window.location.href = "/";
-		} else {
-			console.log("Usuario ya existente");
-		}
-	};
+  }
 	return (
 		<div className="contenedor-formulario">
 			<div className="logo">

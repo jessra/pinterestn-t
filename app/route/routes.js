@@ -2,6 +2,7 @@ module.exports = function(app) {
   const users = require('../controller/Users.controller.js');
   const publication = require('../controller/Publication.controller.js');
   const category = require('../controller/Category.controller.js');
+  const verify = require('../controller/Verify.controller');
   const multer = require("multer");
   let name = '';
   const storage = multer.diskStorage({
