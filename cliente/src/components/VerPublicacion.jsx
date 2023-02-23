@@ -15,7 +15,7 @@ export default function VerPublicacion() {
 					<div className="col-available">
 						<button className="btn-icon">
 							<FontAwesomeIcon icon="fa-solid fa-arrow-left" />
-							<span className="px-2 d-none d-sm-inline">atrás</span>
+							<span className="px-2 d-none d-sm-inline" onClick={(e) => window.location.href = document.referrer}>atrás</span>
 						</button>
 					</div>
 					<div className="col-auto">

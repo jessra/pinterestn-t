@@ -16,7 +16,7 @@ export default function CrearPublicacion() {
 		};
 		setImg(img2);
 	};
-	const enviarImg = async (e) => {
+	const enviarImg = (e) => {
 		e.preventDefault();
 		const data = {
 			category,
@@ -35,15 +35,25 @@ export default function CrearPublicacion() {
 		formData.append("description", description);
 		formData.append("category", category);
 		formData.append("autor", activo.idUsers);
-		const response = await fetch("http://localhost:8081/api/aggpublications", {
+		fetch("http://localhost:8081/api/aggpublications", {
 			method: "POST",
 			body: formData,
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			if (!data.err) {
+				listaPost();
+				setCategory("");
+				setDescription("");
+				setHead("");
+				setImg({ preview: "", data: "" });
+			} else {
+				console.log(data.err)
+			}
+		})
+		.catch((error) => {
+			console.log('Error:', error);
 		});
-		listaPost();
-		setCategory("");
-		setDescription("");
-		setHead("");
-		setImg({ preview: "", data: "" });
 	};
 	if (modal) {
 		return (

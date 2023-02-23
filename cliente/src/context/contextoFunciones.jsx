@@ -56,6 +56,12 @@ export function Contexto_DataProvider(props) {
     })
     setCat(dataCat)
   }
+  function listaActivo () {
+    if (localStorage.getItem('pinterestnt') != null){
+      const dataT = JSON.parse(localStorage.getItem('pinterestnt'))
+      setActivo(dataT)
+    } 
+  }
 
   function iniciarCuenta (user, pass) {
     let men = 'Verifique sus datos';
@@ -104,7 +110,8 @@ export function Contexto_DataProvider(props) {
     listaUsurios,
     verPost,
     postSelect,
-    postFav
+    postFav,
+    listaActivo
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

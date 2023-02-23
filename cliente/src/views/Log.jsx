@@ -28,7 +28,7 @@ function LogIn() {
 	);
 }
 function SingIn() {
-	const { setActivo, listaUsurios } = useContext(Contexto_Funciones);
+	const { setActivo, listaUsurios, listaActivo } = useContext(Contexto_Funciones);
 	const [user, setUser] = useState('')
 	const [pass, setPass] = useState('')
 	const [img, setImg] = useState({preview: '', data: ''})
@@ -39,22 +39,30 @@ function SingIn() {
     }
     setImg(img2)
   }
-  const enviarImg = async (e) => {
+  const enviarImg = (e) => {
     e.preventDefault()
     let formData = new FormData()
     formData.append('img', img.data)
     formData.append('name', user)
     formData.append('pass', pass)
-    const response = await fetch('http://localhost:8081/api/aggusers', {
+    fetch('http://localhost:8081/api/aggusers', {
       method: 'POST',
       body: formData,
-    })
-		if (response.ok) {
-			listaUsurios()
-			window.location.href = '/';
-		} else {
-			console.log('Usuario ya existente')
-		}
+    })  
+		.then((response) => response.json())
+		.then((data) => {
+			if (!data.err) {
+				localStorage.setItem('pinterestnt', JSON.stringify(data));
+				listaActivo()
+				listaUsurios()
+				window.location.href = '/';
+			} else {
+				console.log(data.err)
+			}
+		})
+		.catch((error) => {
+			console.log('Error:', error);
+		});
   }
 	return (
 		<div className="contenedor-formulario">
