@@ -13,7 +13,7 @@ export default function Navbar() {
 						<img alt="Pinterestn´t" src="./src/assets/logo.png" />
 					</div>
 				</div>
-				<ul className="d-flex col-available col-lg-6 col-xl-5">
+				<ul className="d-flex col-available col-lg-8 col-xl-7">
 					<li className="col-available text-center activo">
 						<FontAwesomeIcon icon="fa-solid fa-house" />
 						<span className="d-none d-md-inline px-2">Inicio</span>
@@ -26,7 +26,8 @@ export default function Navbar() {
 						<FontAwesomeIcon icon="fa-solid fa-user" />
 						<span className="d-none d-md-inline px-2">Perfil</span>
 					</li>
-					<li className="d-none col-available text-center">
+					<li className="d-none d-lg-block col-available text-center">
+						<FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
 						<span className="d-none d-md-inline px-2">Crear</span>
 					</li>
 				</ul>
@@ -37,6 +38,10 @@ export default function Navbar() {
 					<p className="texto-sesion">Gloria Artiga</p>
 				</div>
 			</nav>
+			<button className="btn-icon btn-fixed-bottom d-lg-none">
+				<FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
+				<span className="d-none d-md-inline px-2">Crear</span>
+			</button>
 		</>
 	);
 }

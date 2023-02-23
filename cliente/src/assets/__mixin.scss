@@ -47,19 +47,19 @@ $unit: "px";
 // Display
 @mixin display {
 	&-flex {
-		display: flex;
+		display: flex !important;
 	}
 	&-inline-block {
-		display: inline-block;
+		display: inline-block !important;
 	}
 	&-inline {
-		display: inline;
+		display: inline !important;
 	}
 	&-block {
-		display: block;
+		display: block !important;
 	}
 	&-none {
-		display: none;
+		display: none !important;
 	}
 }
 
