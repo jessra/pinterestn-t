@@ -71,11 +71,12 @@ function SingIn() {
     })  
 		.then((response) => response.json())
 		.then((data) => {
+			console.log(data.err);
 			if (!data.err) {
 				localStorage.setItem('pinterestnt', JSON.stringify(data));
 				listaActivo()
 				listaUsurios()
-				window.location.href = '/';
+				// window.location.href = '/';
 			} else {
 				console.log(data.err)
 			}
