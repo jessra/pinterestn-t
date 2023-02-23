@@ -1,6 +1,7 @@
 a.texto-link {
 	font-weight: 500;
 	text-decoration: inherit;
+	text-align: center;
 	color: $secundario;
 	margin: 1rem;
 	margin-top: 0;
@@ -10,6 +11,7 @@ a.texto-link {
 	}
 }
 .titulo {
+	text-align: center;
 	font-size: 1.7rem;
 	font-weight: 400;
 }
@@ -184,7 +186,6 @@ a.texto-link {
 .formulario {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	margin: 2rem auto;
 }
 .grupo-inputs {
