@@ -6,7 +6,7 @@ export function Inicio() {
 	return (
 		<>
 		<VerPublicacion />
-		{/* <ModalCrear /> */}
+		<ModalCrear />
 		<ContenedorImg />
 		</>
 	);
