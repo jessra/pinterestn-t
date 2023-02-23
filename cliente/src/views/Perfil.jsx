@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/Navbar";
+import ContenedorImg from "../components/ContenedorImg"
+import { useContext, useState } from "react";
+import { Contexto_Funciones } from "../context/contextoFunciones";
 export default function Perfil() {
+	const { postFavs } = useContext(Contexto_Funciones);
 	return (
 		<>
 			<Navbar />
@@ -17,6 +21,7 @@ export default function Perfil() {
 					<img src="./src/imagenesTemporales/perfil.jpg" alt="" />
 				</div>
 			</div>
+			<ContenedorImg post={postFavs} msg={'No has hecho publicaciones'}/>
 		</>
 	);
 }

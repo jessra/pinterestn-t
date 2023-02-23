@@ -1,60 +1,19 @@
-export default function ContenedorImg() {
-	return (
-    <div className="contenedor-galeria">
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
+export default function ContenedorImg({post, msg}) {
+  if (post) {
+    return (
+      <div className="contenedor-galeria">
+        {post.map((p) => (
+          <div onClick={(e) => window.location.href = '/Image/' + p.idPub} key={p.idPub} className="contenedor-img col-5 col-md-3 col-lg-2">
+            <img src={'../src/imagenesTemporales/' + p.img} alt="" />
+          </div>
+        ))}
       </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
+    );
+  } else {
+    return (
+      <div className="contenedor-galeria">
+        <h2>{msg}</h2>
       </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/phos.jpg" alt="" />
-      </div>
-      <div className="contenedor-img col-5 col-md-3 col-lg-2">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-    </div>
-	);
+    );
+  }
 }

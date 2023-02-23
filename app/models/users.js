@@ -17,24 +17,22 @@ module.exports = (sequelize, Sequelize) => {
 		type: Sequelize.STRING,
 		allowNull: false
 	  },
+		img: {
+		type: Sequelize.TEXT,
+		allowNull: false
+		},
 		createdAt: {
 			type: Sequelize.DATE,
 			field: 'created_at',
 			defaultValue: Sequelize.NOW
 		},
-		updateAt: {
+		updatedAt: {
 			type: Sequelize.DATE,
 			field: 'update_at',
 			defaultValue: Sequelize.NOW
 		},
-		deletedAt: {
-			type: Sequelize.DATE,
-			field: 'deleted_at',
-			defaultValue: Sequelize.NOW
-		}
 	}, {
-		paranoid: true,
-		freezeTableName: true
+		// freezeTableName: true
 	});
   
   Users.associate = models => {
