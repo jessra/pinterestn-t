@@ -5,6 +5,8 @@ export const Contexto_Funciones = createContext();
 export function Contexto_DataProvider(props) {
   const [users, setUsers] = useState([]);
   const [post, setPost] = useState([]);
+  const [postSelect, setPostSelect] = useState([])
+  const [postFav, setPostFav] = useState([])
   const [cat, setCat] = useState([]);
   const [activo, setActivo] = useState([]);
   const [modal, setModal] = useState(false);
@@ -14,7 +16,6 @@ export function Contexto_DataProvider(props) {
     listaPost()
     listaCategorias()
   }, [])
-
   function listaPost () {
     let dataPost = []
     http
@@ -56,34 +57,11 @@ export function Contexto_DataProvider(props) {
     setCat(dataCat)
   }
 
-  function crearCuenta (user, pass) {
-    if (user && pass) {
-      const data = {
-        name: user,
-        pass: pass
-      }
-      http
-      .post('/aggusers', data)
-      .then(response => {
-        console.log(response.data)
-        setActivo(response.data)
-        setUsers(listaUsurios)
-        window.location.href = '/';
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    }
-  }
-
   function iniciarCuenta (user, pass) {
     let men = 'Verifique sus datos';
     let r = false
     if (user && pass) {
-      console.log(user)
-      console.log(pass)
       const user2 = users
-      console.log(users)
       user2.forEach((u) => {
         if (u.name == user) {
           if (u.pass == pass) {
@@ -98,8 +76,23 @@ export function Contexto_DataProvider(props) {
     console.log(men)
   }
 
+  function verPost (id) {
+    const data = {
+      id
+    }
+    http
+    .post('/publication', data)
+    .then(response => {
+      const data = response.data
+      setPostSelect(data)
+    })
+    .catch(e => {
+      console.log(e)
+      return {error: 'error'}
+    })
+  }
+
   return <Contexto_Funciones.Provider value={{
-    crearCuenta,
     iniciarCuenta,
     modal,
     setModal,
@@ -108,7 +101,10 @@ export function Contexto_DataProvider(props) {
     post,
     cat,
     setActivo,
-    listaUsurios
+    listaUsurios,
+    verPost,
+    postSelect,
+    postFav
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

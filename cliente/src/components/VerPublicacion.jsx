@@ -1,21 +1,32 @@
+import { useContext, useEffect, useState } from "react";
+import { Contexto_Funciones } from "../context/contextoFunciones";
+
 export default function CrearPublicacion() {
-	return (
-		<div className="d-flex justify-center">
-			<div className="contenedor-img">
-				<img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-			</div>
-			<div className="d-flex flex-column col-5 p-4">
-				<p className="titulo">Borem ipsum</p>
-				<p className="descripcion">
-					Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-					molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla
-					accumsan.
-				</p>
-				<div className="d-flex align-items-end col-available">
-					<button className="btn-outline">Editar</button>
-					<button className="btn-flat primario">Favorito</button>
+	const { verPost, postSelect } = useContext(Contexto_Funciones);
+	const vistaActual = window.location.href
+	const route = vistaActual.split('/')[4]
+	if (route) {
+		useEffect((e) => {
+			verPost(route)
+		}, [])
+		return (
+			<div className="d-flex justify-center">
+				<div className="contenedor-img">
+					<img src={'../src/imagenesTemporales/' + postSelect.img} alt="" />
+				</div>
+				<div className="d-flex flex-column col-5 p-4">
+					<p className="titulo">{postSelect.head}</p>
+					<p className="descripcion">
+						{postSelect.description}
+					</p>
+					<p> {postSelect.autor}</p>
+					<div className="d-flex align-items-end col-available">
+						<button className="btn-outline">Editar</button>
+						<button className="btn-outline">Eliminar</button>
+						<button className="btn-flat primario">Favorito</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }

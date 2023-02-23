@@ -29,6 +29,7 @@ module.exports = function(app) {
     console.log(req.file);
     publication.create(req, name, res)
   });
+  app.post('/api/publication', publication.findOne)
 
   // Categorys
   app.get('/api/category', category.findAll);
