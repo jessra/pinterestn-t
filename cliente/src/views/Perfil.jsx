@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/Navbar";
 import ContenedorImg from "../components/ContenedorImg"
+import ModalCrear from "../components/ModalCrear"
 import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 export default function Perfil() {
@@ -8,6 +9,7 @@ export default function Perfil() {
 	return (
 		<>
 			<Navbar />
+			<ModalCrear />
 			<button className="btn-flat secundario pequeño float-right">
 				<FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
 				<span className="px-2">Cerrar sesión</span>

@@ -11,13 +11,11 @@ a.texto-link {
 	}
 }
 .titulo {
-	text-align: center;
 	font-size: 1.7rem;
 	font-weight: 400;
 }
 .descripcion {
 	font-size: 1.1rem;
-	padding: 0.5rem;
 }
 .logo {
 	img {
@@ -129,6 +127,7 @@ a.texto-link {
 		flex-wrap: wrap;
 		padding-bottom: 1rem;
 		justify-content: center;
+		animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 		& .contenedor-img {
 			margin-left: auto;
 			margin-right: auto;
@@ -154,7 +153,12 @@ a.texto-link {
 		margin-top: 0.5rem;
 		height: 100vh;
 		width: 100vw;
+		translate: 0px 100vh;
+		animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
 		@media (min-width: 992px) {
+			animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+			translate: 0;
 			align-items: center;
 		}
 	}
@@ -176,6 +180,7 @@ a.texto-link {
 			align-items: center;
 			border-radius: 1rem;
 			height: auto;
+			overflow: hidden;
 			width: calc(100vw / 1.13);
 		}
 		@media (min-width: 1200px) {
@@ -301,4 +306,40 @@ button {
 		background-color: $primario;
 		color: $blanco;
 	}
+	&.animacion-rotar:focus {
+		animation: rotate-center 0.6s ease-in-out both;
+	}
+}
+
+@keyframes slide-top {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100vh);
+	}
+}
+@keyframes scale-up-center {
+	0% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

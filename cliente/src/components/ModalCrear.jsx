@@ -135,13 +135,6 @@ export default function CrearPublicacion() {
 										<FontAwesomeIcon icon="fa-solid fa-times" />
 										<span className="px-1">Cancelar</span>
 									</button>
-									<button
-										className="btn-outline col-available"
-										onClick={(e) => setModal(false)}
-									>
-										<FontAwesomeIcon icon="fa-solid fa-trash" />
-										<span className="px-1">Eliminar</span>
-									</button>
 									<button className="btn-flat primario col-available" onClick={enviarImg}>
 										<FontAwesomeIcon icon="fa-solid fa-check" />
 										<span className="px-1">Publicar</span>
