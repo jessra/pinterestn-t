@@ -11,7 +11,8 @@ import {
   faPen,
   faPenToSquare,
   faUpload,
-  faCheck
+  faCheck,
+  faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -26,5 +27,6 @@ library.add(
   faPen,
   faPenToSquare,
   faUpload,
-  faCheck
+  faCheck,
+  faMagnifyingGlass
 );
