@@ -12,7 +12,7 @@ export default function VerPublicacion() {
 		}, []);
 		if (editar) {
 			return (
-				<div className="contenedor-publicacion justify-evenly flip-horizontal-top">
+				<div className="contenedor-publicacion justify-evenly">
 					<div className="d-flex align-items-center w-100 col-12">
 						<div className="col-available">
 							<button className="btn-icon">
@@ -49,7 +49,7 @@ export default function VerPublicacion() {
 							<img src={"../src/imagenesTemporales/" + postSelect.img} alt="" />
 						</div>
 					</div>
-					<div className="col-sm-6 col-lg-5 col-xl-3">
+					<div className="col-sm-6 col-lg-5 col-xl-3 flip-scale-top bg-color-fondo">
 						<div className="grupo-inputs file">
 							<input
 								type="file"

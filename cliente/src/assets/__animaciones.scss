@@ -33,31 +33,16 @@
 		transform: rotate(360deg);
 	}
 }
-
-.animacion-flip-horizontal {
-	animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-}
-@keyframes flip-horizontal-bottom {
-	0% {
-		transform: rotateX(-180deg);
-		opacity: 0;
-	}
-	40% {
-		opacity: 0;
-	}
-	100% {
-		transform: rotateX(0);
-		opacity: 1;
-	}
-}
-.flip-horizontal-top {
+.flip-scale-top {
 	animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 @keyframes flip-horizontal-top {
 	0% {
-		transform: rotateX(180deg);
+		transform: translateY(-50%) rotateX(-90deg) scale(2);
+		transform-origin: 50% 50%;
 	}
 	100% {
-		transform: rotateX(0);
+		transform: translateY(0) rotateX(0) scale(1);
+		transform-origin: 50% 0%;
 	}
 }
