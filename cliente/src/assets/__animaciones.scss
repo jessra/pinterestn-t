@@ -14,6 +14,9 @@
 		transform: scale(1);
 	}
 }
+.animacion-slide-bottom {
+	animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
 @keyframes slide-bottom {
 	0% {
 		transform: translateY(-100px);
@@ -30,6 +33,7 @@
 		transform: rotate(360deg);
 	}
 }
+
 .animacion-flip-horizontal {
 	animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
@@ -44,5 +48,16 @@
 	100% {
 		transform: rotateX(0);
 		opacity: 1;
+	}
+}
+.flip-horizontal-top {
+	animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+@keyframes flip-horizontal-top {
+	0% {
+		transform: rotateX(180deg);
+	}
+	100% {
+		transform: rotateX(0);
 	}
 }

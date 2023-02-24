@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function Navbar() {
-	const [mostrarUl, valor] = useState(true);
+	const [mostrarUl, valorMostrarUl] = useState(true);
 	const { modal, setModal } = useContext(Contexto_Funciones);
 	return (
 		<>
@@ -12,7 +12,7 @@ export default function Navbar() {
 					<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 				</div>
 				<div className="buscador d-lg-none">
-					<button className="btn-outline secundario" onClick={() => valor(!mostrarUl)}>
+					<button className="btn-outline secundario" onClick={() => valorMostrarUl(!mostrarUl)}>
 						<FontAwesomeIcon
 							icon={mostrarUl ? "fa-solid fa-magnifying-glass" : "fa-solid fa-times"}
 						/>
@@ -148,7 +148,7 @@ export default function Navbar() {
 						</div>
 					</div>
 					<div className="col-auto">
-						<button className="btn-outline secundario" onClick={() => valor(!mostrarUl)}>
+						<button className="btn-outline secundario" onClick={() => valorMostrarUl(!mostrarUl)}>
 							<FontAwesomeIcon
 								icon={mostrarUl ? "fa-solid fa-magnifying-glass" : "fa-solid fa-times"}
 							/>
