@@ -2,7 +2,7 @@ import ContenedorImg from "../components/ContenedorImg"
 import VerPublicacion from "../components/VerPublicacion"
 import ModalCrear from "../components/ModalCrear"
 import Navbar from "../components/Navbar";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export function Inicio() {
