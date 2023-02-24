@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function VerPublicacion() {
@@ -19,7 +19,7 @@ export default function VerPublicacion() {
 								className="px-2 d-none d-sm-inline"
 								onClick={(e) => (window.location.href = document.referrer)}
 							>
-								atrás
+								Atrás
 							</span>
 						</button>
 					</div>

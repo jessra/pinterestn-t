@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function Navbar() {
-	const [mostarUl, valor] = useState(true);
+	const [mostrarUl, valor] = useState(true);
 	const { modal, setModal } = useContext(Contexto_Funciones);
 	return (
 		<>
@@ -11,24 +11,50 @@ export default function Navbar() {
 				<div className="logo animacion-rotar">
 					<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 				</div>
-				<div className="buscador w-100">
-					<div className="grupo-inputs">
-						<input
-							type="text"
-							multiple
-							id="categoria"
-							list="categorias"
-							placeholder="Busca por categoría"
-							// value={category}
+				<div className="buscador d-lg-none">
+					<button className="btn-outline secundario" onClick={() => valor(!mostrarUl)}>
+						<FontAwesomeIcon
+							icon={mostrarUl ? "fa-solid fa-magnifying-glass" : "fa-solid fa-times"}
 						/>
-						<label htmlFor="categoria">Categoría</label>
-						{/* <datalist id="categorias">
-								{cat.map((c) => (
-									<option key={c.idCat} value={c.nameCat}>
-										{c.nameCat}
-									</option>
-								))}
-							</datalist> */}
+						<span className="px-2">{mostrarUl ? "Buscar" : "Cancelar"}</span>
+					</button>
+					<div className={mostrarUl ? "d-none" : "d-block d-sm-flex"}>
+						<div className="grupo-inputs animacion-flip-horizontal">
+							<input
+								type="text"
+								multiple
+								id="categoria"
+								list="categorias"
+								placeholder="Busca por categoría"
+								// value={category}
+							/>
+							<label htmlFor="categoria">Categoría</label>
+							{/* <datalist id="categorias">
+										{cat.map((c) => (
+											<option key={c.idCat} value={c.nameCat}>
+												{c.nameCat}
+											</option>
+										))}
+									</datalist> */}
+						</div>
+						<div className="grupo-inputs animacion-flip-horizontal">
+							<input
+								type="text"
+								multiple
+								id="autores"
+								list="autores"
+								placeholder="Busca por Autor"
+								// value={category}
+							/>
+							<label htmlFor="autores">Autor</label>
+							{/* <datalist id="autores">
+										{cat.map((c) => (
+											<option key={c.idCat} value={c.nameCat}>
+												{c.nameCat}
+											</option>
+										))}
+									</datalist> */}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -38,7 +64,7 @@ export default function Navbar() {
 						<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 					</div>
 				</div>
-				<ul className={mostarUl ? "lista-nav col-available" : "ocultar-nav col-lg-auto"}>
+				<ul className={mostrarUl ? "col-available" : "ocultar-nav col-available col-lg-auto"}>
 					<li
 						className="text-center activo col-available col-md-auto col-lg-auto"
 						onClick={(e) => {
@@ -78,40 +104,56 @@ export default function Navbar() {
 				</ul>
 				<div
 					className={
-						mostarUl
-							? "buscador d-none d-md-block"
-							: "buscador d-none d-md-block col-available"
+						mostrarUl
+							? "buscador d-none d-md-flex col-auto"
+							: "buscador d-none d-md-flex col-available"
 					}
 				>
-					<input type="checkbox" id="check-buscador" className="d-none" />
-					<label htmlFor="check-buscador" className="abrir" onClick={() => valor(false)}>
-						<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-						<span className="px-2">Buscar</span>
-					</label>
-					<label
-						htmlFor="check-buscador"
-						className="cerrar animacion-flip-horizontal"
-						onClick={() => valor(true)}
-					>
-						<FontAwesomeIcon icon="fa-solid fa-times" />
-					</label>
-					<div className="grupo-inputs animacion-flip-horizontal">
-						<input
-							type="text"
-							multiple
-							id="categoria"
-							list="categorias"
-							placeholder="Busca por categoría"
-							// value={category}
-						/>
-						<label htmlFor="categoria">Categoría</label>
-						{/* <datalist id="categorias">
+					<div className={mostrarUl ? "d-none" : "d-flex"}>
+						<div className="grupo-inputs animacion-flip-horizontal">
+							<input
+								type="text"
+								multiple
+								id="categoria"
+								list="categorias"
+								placeholder="Busca por categoría"
+								// value={category}
+							/>
+							<label htmlFor="categoria">Categoría</label>
+							{/* <datalist id="categorias">
 								{cat.map((c) => (
 									<option key={c.idCat} value={c.nameCat}>
 										{c.nameCat}
 									</option>
 								))}
 							</datalist> */}
+						</div>
+						<div className="grupo-inputs animacion-flip-horizontal">
+							<input
+								type="text"
+								multiple
+								id="autores"
+								list="autores"
+								placeholder="Busca por Autor"
+								// value={category}
+							/>
+							<label htmlFor="autores">Autor</label>
+							{/* <datalist id="autores">
+								{cat.map((c) => (
+									<option key={c.idCat} value={c.nameCat}>
+										{c.nameCat}
+									</option>
+								))}
+							</datalist> */}
+						</div>
+					</div>
+					<div className="col-auto">
+						<button className="btn-outline secundario" onClick={() => valor(!mostrarUl)}>
+							<FontAwesomeIcon
+								icon={mostrarUl ? "fa-solid fa-magnifying-glass" : "fa-solid fa-times"}
+							/>
+							<span className="px-1">{mostrarUl ? "Buscar" : "Cancelar"}</span>
+						</button>
 					</div>
 				</div>
 				<div className="col-4 col-sm-3 col-md-2 contenedor-sesion">
