@@ -23,6 +23,9 @@ a.texto-link {
 		margin-right: auto;
 		display: block;
 	}
+	&.animacion-rotar {
+		animation: rotate-center 0.6s ease-in-out both;
+	}
 }
 .encabezado-perfil {
 	text-align: center;
@@ -47,18 +50,25 @@ a.texto-link {
 	ul li {
 		border-radius: 2rem;
 		cursor: pointer;
-		margin: 0.5rem;
-		padding: 1rem;
+		margin: 0.2rem;
+		padding: 0.5rem;
 		transition: all 0.3s ease;
 		&.activo {
 			background-color: $secundario;
 		}
-		&:hover {
-			background-color: $blanco;
-			color: $secundario;
-		}
+	}
+	ul.lista-nav {
+		display: flex;
+		align-items: center;
+	}
+	ul.ocultar-nav {
+		display: none;
 	}
 	@media (min-width: 992px) {
+		.ocultar-nav {
+			display: flex !important;
+			align-items: center;
+		}
 		justify-content: space-between;
 	}
 }
@@ -93,9 +103,10 @@ a.texto-link {
 	}
 	&-sesion {
 		position: relative;
+		padding-bottom: 0.5rem;
 		.texto-sesion {
+			bottom: 0rem;
 			position: absolute;
-			bottom: -0.5rem;
 			text-align: center;
 			width: 100%;
 		}
@@ -117,6 +128,9 @@ a.texto-link {
 		height: 100vh;
 	}
 	&-logo {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
 		padding-top: 0.5rem;
 		background-color: $primario;
 	}
@@ -235,6 +249,66 @@ a.texto-link {
 		}
 	}
 }
+.buscador {
+	font-weight: bold;
+	margin: 0.2rem;
+	padding: 0.5rem;
+	position: relative;
+	.grupo-inputs {
+		padding: 1.2rem 0.5rem;
+		input {
+			border: 3px solid $fondo;
+			&:hover,
+			&:focus {
+				border: 3px solid $secundario;
+			}
+			&:hover ~ label,
+			&:focus ~ label {
+				color: $secundario;
+			}
+		}
+		label {
+			color: $fondo;
+			background-color: $primario;
+		}
+		@media (min-width: 768px) {
+			display: none;
+		}
+	}
+	label.cerrar {
+		bottom: 1rem;
+		color: $secundario;
+		display: none;
+		font-size: 1.5rem;
+		padding: 1rem;
+		position: absolute;
+		right: 1rem;
+		z-index: 1;
+	}
+	label.abrir {
+		border-radius: 2rem;
+		cursor: pointer;
+		margin: 0.2rem;
+		padding: 0.5rem;
+		transition: all 0.3s ease;
+		color: $fondo;
+		&:hover {
+			background-color: $blanco;
+			color: $secundario;
+		}
+	}
+	input#check-buscador:checked {
+		~ .grupo-inputs {
+			display: block;
+		}
+		~ label.cerrar {
+			display: block;
+		}
+		~ label.abrir {
+			display: none;
+		}
+	}
+}
 button {
 	border-radius: 8px;
 	border: 1px solid transparent;
@@ -309,37 +383,4 @@ button {
 	&.animacion-rotar:focus {
 		animation: rotate-center 0.6s ease-in-out both;
 	}
-}
-
-@keyframes slide-top {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(-100vh);
-	}
-}
-@keyframes scale-up-center {
-	0% {
-		transform: scale(0.5);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
-@keyframes slide-bottom {
-  0% {
-    transform: translateY(-100px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@keyframes rotate-center {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
