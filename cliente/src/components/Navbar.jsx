@@ -5,6 +5,16 @@ import { Contexto_Funciones } from "../context/contextoFunciones";
 export default function Navbar() {
 	const [mostrarUl, setMostrarUl] = useState(true);
 	const { modal, setModal, activo } = useContext(Contexto_Funciones);
+	const vistaActual = window.location.href;
+	const route = vistaActual.split("/")[3];
+	let classIn, classFav, classPer = ''
+	if (route == 'Perfil') {
+		classPer = 'activo'
+	} else if (route == 'Favoritos') {
+		classFav = 'activo'
+	} else {
+		classIn = 'activo'
+	}
 	return (
 		<>
 			<div className="d-md-none contenedor-logo">
@@ -66,7 +76,7 @@ export default function Navbar() {
 				</div>
 				<ul className={mostrarUl ? "col-available" : "ocultar-nav col-available col-lg-auto"}>
 					<li
-						className="text-center activo col-available col-md-auto col-lg-auto"
+						className={"text-center " + classIn + " col-available col-md-auto col-lg-auto"}
 						onClick={(e) => {
 							window.location.href = "/";
 						}}
@@ -75,7 +85,7 @@ export default function Navbar() {
 						<span className="d-none d-md-inline px-2">Inicio</span>
 					</li>
 					<li
-						className="text-center col-available col-md-auto"
+						className={"text-center " + classFav +" col-available col-md-auto"}
 						onClick={(e) => {
 							window.location.href = "/Favoritos";
 						}}
@@ -84,7 +94,7 @@ export default function Navbar() {
 						<span className="d-none d-md-inline px-2">Favoritos</span>
 					</li>
 					<li
-						className="text-center col-available col-md-auto"
+						className={"text-center " + classPer +" col-available col-md-auto"}
 						onClick={(e) => {
 							window.location.href = "/Perfil";
 						}}
