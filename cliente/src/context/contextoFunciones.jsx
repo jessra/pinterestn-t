@@ -15,7 +15,9 @@ export function Contexto_DataProvider(props) {
     listaUsurios()
     listaPost()
     listaCategorias()
+    listaActivo()
   }, [])
+
   function listaPost () {
     let dataPost = []
     http
@@ -62,24 +64,34 @@ export function Contexto_DataProvider(props) {
       setActivo(dataT)
     } 
   }
-
   function iniciarCuenta (user, pass) {
-    let men = 'Verifique sus datos';
-    let r = false
     if (user && pass) {
       const user2 = users
       user2.forEach((u) => {
         if (u.name == user) {
           if (u.pass == pass) {
-            men = 'Sesión iniciada'
-            r = true
-            setActivo(u)
-            window.location.href = '/';
+            http
+            .post("/token", {idUser: u.idUser})
+            .then((response) => {
+              if (!response.data.err) {
+                const data = {
+                  user: u,
+                  token: response.data.token
+                }
+                localStorage.setItem('pinterestnt', JSON.stringify(data));
+                listaActivo()
+                window.location.href = '/';
+              } else {
+                console.log(response.data.err)
+              }
+            })
+            .catch((error) => {
+              console.log('Error:', error);
+            });
           }
         }
       })
     }
-    console.log(men)
   }
 
   function verPost (id) {
@@ -111,7 +123,7 @@ export function Contexto_DataProvider(props) {
     verPost,
     postSelect,
     postFav,
-    listaActivo
+    listaActivo,
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

@@ -3,6 +3,8 @@ module.exports = function(app) {
   const publication = require('../controller/Publication.controller.js');
   const category = require('../controller/Category.controller.js');
   const verify = require('../controller/Verify.controller');
+  const jwt = require('jsonwebtoken');
+  const config = require('../config')
   const multer = require("multer");
   let name = '';
   const storage = multer.diskStorage({
@@ -17,17 +19,22 @@ module.exports = function(app) {
   
   const upload = multer({ storage: storage })
 
+  // Token
+  app.post('/api/token', function (req, res) {
+    const token = jwt.sign({ id: req.body.idUser }, config.secret, {
+      expiresIn: Date.now() + 60 * 50000
+    });
+		res.send({token});
+  })
   // Users
   app.get('/api/users', users.findAll);
   app.post('/api/aggusers', upload.single('img'), function (req, res) {
-    console.log(req.file);
     users.create(req, name, res)
   });
 
   // Publications
   app.get('/api/publications', publication.findAll);
-  app.post('/api/aggpublications', upload.single('file'), function (req, res) {
-    console.log(req.file);
+  app.post('/api/aggpublications', verify, upload.single('file'), function (req, res) {
     publication.create(req, name, res)
   });
   app.post('/api/publication', publication.findOne)

@@ -8,7 +8,7 @@ exports.create = (req, name, res) => {
 	Publication.create({  
 		head: req.body.head,
 		description: req.body.description,
-    autor: req.body.autor,
+    autor: req.userid,
     img: name,
 		category: req.body.category
 	}).then(pub => {		

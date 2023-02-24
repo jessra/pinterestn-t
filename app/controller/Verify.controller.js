@@ -2,16 +2,22 @@ const jwt = require('jsonwebtoken');
 const config = require('../config')
 
 function verify(req, res, next) {
-  const token = req.headers['x-access-token'];
+  const token = req.headers.authorization.split(' ')[1];
+  console.log(token)
   if (!token) {
     return res.status(401).json({
       auth: false,
-      status: 'No se envió el Token'
+      err: 'No se envió el Token'
     });
   };
   const decodificado = jwt.verify(token, config.secret);
-  req.userid = decodificado.id;
-  next();
+  console.log(decodificado)
+  if (Date.now() > decodificado.exp) {
+    res.json({ err: 'El tiempo ya expiró' });
+  } else {
+    req.userid = decodificado.id;
+    next();
+  }
 }
 
 module.exports = verify;

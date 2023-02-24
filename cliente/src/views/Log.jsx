@@ -65,20 +65,16 @@ function SingIn() {
     formData.append('img', img.data)
     formData.append('name', user)
     formData.append('pass', pass)
-    fetch('http://localhost:8081/api/aggusers', {
-      method: 'POST',
-      body: formData,
-    })  
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data.err);
-			if (!data.err) {
-				localStorage.setItem('pinterestnt', JSON.stringify(data));
+		http
+		.post("http://localhost:8081/api/aggusers", formData)
+		.then((response) => {
+			if (response.data.err) {
+				console.log(response.data.err)
+			} else {
+				localStorage.setItem('pinterestnt', JSON.stringify(response.data));
 				listaActivo()
 				listaUsurios()
-				// window.location.href = '/';
-			} else {
-				console.log(data.err)
+				window.location.href = '/';
 			}
 		})
 		.catch((error) => {

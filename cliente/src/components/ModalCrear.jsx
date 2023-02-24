@@ -35,20 +35,24 @@ export default function CrearPublicacion() {
 		formData.append("description", description);
 		formData.append("category", category);
 		formData.append("autor", '0');
-		fetch("http://localhost:8081/api/aggpublications", {
-			method: "POST",
-			body: formData,
-		})
-		.then((response) => response.json())
-		.then((data) => {
-			if (!data.err) {
+		let token = {
+      headers: {
+        Authorization: `Bearer ${activo.token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+		http
+		.post("http://localhost:8081/api/aggpublications", formData, token)
+		.then((response) => {
+			console.log(response)
+			if (!response.data.err) {
 				listaPost();
 				setCategory("");
 				setDescription("");
 				setHead("");
 				setImg({ preview: "", data: "" });
 			} else {
-				console.log(data.err)
+				console.log(response.data.err)
 			}
 		})
 		.catch((error) => {
