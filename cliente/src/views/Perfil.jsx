@@ -2,10 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/Navbar";
 import ContenedorImg from "../components/ContenedorImg"
 import ModalCrear from "../components/ModalCrear"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 export default function Perfil() {
-	const { postFavs } = useContext(Contexto_Funciones);
+	const { post, listaPostUser, activo } = useContext(Contexto_Funciones);
+	useEffect((e) => {
+		listaPostUser();
+	}, []);
 	return (
 		<>
 			<Navbar />
@@ -17,13 +20,13 @@ export default function Perfil() {
 			<div className="mt-11 mt-md-1 d-flex justify-center align-items-center">
 				<p className="encabezado-perfil">
 					Publicaciones de
-					<span className="d-block">Gloria Artiga</span>
+					<span className="d-block">{activo.user.name}</span>
 				</p>
 				<div className="contenedor-img perfil">
-					<img src="./src/imagenesTemporales/perfil.jpg" alt="" />
+					<img src={"./src/imagenesTemporales/" + activo.user.img} alt="" />
 				</div>
 			</div>
-			<ContenedorImg post={postFavs} msg={'No has hecho publicaciones'}/>
+			<ContenedorImg post={post} msg={'No has hecho publicaciones'}/>
 		</>
 	);
 }

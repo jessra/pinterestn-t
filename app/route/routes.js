@@ -28,7 +28,8 @@ module.exports = function(app) {
   })
   // Users
   app.get('/api/users', users.findAll);
-  app.post('/api/aggusers', upload.single('img'), function (req, res) {
+  app.post('/api/aggusers', upload.single('file'), function (req, res) {
+    console.log(req.file);
     users.create(req, name, res)
   });
 
@@ -37,7 +38,10 @@ module.exports = function(app) {
   app.post('/api/aggpublications', verify, upload.single('file'), function (req, res) {
     publication.create(req, name, res)
   });
-  app.post('/api/publication', publication.findOne)
+  app.post('/api/publication', publication.findOnePub)
+  app.post('/api/perfil', verify, function (req, res) {
+    publication.findAllUser(req, res)
+  })
 
   // Categorys
   app.get('/api/category', category.findAll);

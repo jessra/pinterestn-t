@@ -60,11 +60,11 @@ function SingIn() {
     setImg(img2)
   }
   const enviarImg = (e) => {
-    e.preventDefault()
-    let formData = new FormData()
-    formData.append('img', img.data)
-    formData.append('name', user)
-    formData.append('pass', pass)
+    e.preventDefault();
+    let formData = new FormData();
+		formData.append("file", img.data);
+    formData.append("name", user);
+    formData.append("pass", pass);
 		http
 		.post("http://localhost:8081/api/aggusers", formData)
 		.then((response) => {

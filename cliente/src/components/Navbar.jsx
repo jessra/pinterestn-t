@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function Navbar() {
-	const [mostarUl, valor] = useState(true);
-	const { modal, setModal } = useContext(Contexto_Funciones);
+	const [mostrarUl, setMostrarUl] = useState(true);
+	const { modal, setModal, activo } = useContext(Contexto_Funciones);
 	return (
 		<>
 			<div className="d-md-none contenedor-logo">
@@ -38,7 +38,7 @@ export default function Navbar() {
 						<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 					</div>
 				</div>
-				<ul className={mostarUl ? "lista-nav col-available" : "ocultar-nav col-lg-auto"}>
+				<ul className={mostrarUl ? "lista-nav col-available" : "ocultar-nav col-lg-auto"}>
 					<li
 						className="text-center activo col-available col-md-auto col-lg-auto"
 						onClick={(e) => {
@@ -78,20 +78,20 @@ export default function Navbar() {
 				</ul>
 				<div
 					className={
-						mostarUl
+						mostrarUl
 							? "buscador d-none d-md-block"
 							: "buscador d-none d-md-block col-available"
 					}
 				>
 					<input type="checkbox" id="check-buscador" className="d-none" />
-					<label htmlFor="check-buscador" className="abrir" onClick={() => valor(false)}>
+					<label htmlFor="check-buscador" className="abrir" onClick={() => setMostrarUl(false)}>
 						<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
 						<span className="px-2">Buscar</span>
 					</label>
 					<label
 						htmlFor="check-buscador"
 						className="cerrar animacion-flip-horizontal"
-						onClick={() => valor(true)}
+						onClick={() => setMostrarUl(true)}
 					>
 						<FontAwesomeIcon icon="fa-solid fa-times" />
 					</label>
@@ -116,9 +116,9 @@ export default function Navbar() {
 				</div>
 				<div className="col-4 col-sm-3 col-md-2 contenedor-sesion">
 					<div className="contenedor-img sesion">
-						<img src="../src/imagenesTemporales/perfil.jpg" alt="" />
+						<img src={"../src/imagenesTemporales/" + activo.user.img} alt="" />
 					</div>
-					<p className="texto-sesion">Gloria Artiga</p>
+					<p className="texto-sesion">{activo.user.name}</p>
 				</div>
 			</nav>
 			<button

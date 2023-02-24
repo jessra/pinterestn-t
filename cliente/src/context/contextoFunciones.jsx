@@ -8,14 +8,20 @@ export function Contexto_DataProvider(props) {
   const [postSelect, setPostSelect] = useState([])
   const [postFav, setPostFav] = useState([])
   const [cat, setCat] = useState([]);
-  const [activo, setActivo] = useState([]);
+  const [activo, setActivo] = useState({user: {img: '', name: ''}});
   const [modal, setModal] = useState(false);
+	const vistaActual = window.location.href
+	const route = vistaActual.split('/')[3]
 
   useEffect((e) => {
-    listaUsurios()
-    listaPost()
-    listaCategorias()
+    if (route == 'Perfil') {
+      listaPostUser()
+    } else {
+      listaPost()
+    }
     listaActivo()
+    listaUsurios()
+    listaCategorias()
   }, [])
 
   function listaPost () {
@@ -31,6 +37,31 @@ export function Contexto_DataProvider(props) {
     })
     setPost(dataPost)
     listaCategorias()
+  }
+
+  async function listaPostUser () {
+    try {
+      let dataPost = []
+      const dataT = await JSON.parse(localStorage.getItem('pinterestnt'))
+      const token = {
+        headers: {
+          authorization: `Bearer ${dataT.token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      await http
+      .post('/perfil', {}, token)
+      .then(response => {
+        dataPost = response.data
+        setPost(dataPost.reverse())
+      })
+      .catch(e => {
+        console.log(e)
+      })
+      setPost(dataPost)
+  } catch {
+
+  }
   }
   function listaUsurios () {
     let dataUsers = []
@@ -124,6 +155,7 @@ export function Contexto_DataProvider(props) {
     postSelect,
     postFav,
     listaActivo,
+    listaPostUser
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

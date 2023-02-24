@@ -24,40 +24,39 @@ export default function CrearPublicacion() {
 		http
 			.post("/dupcategory", data)
 			.then((response) => {
-				setCategory(response.data[0].idCat);
+				const cat = response.data[0].idCat;
+				let formData = new FormData();
+				formData.append("file", img.data);
+				formData.append("head", head);
+				formData.append("description", description);
+				formData.append("category", cat);
+				let token = {
+					headers: {
+						authorization: `Bearer ${activo.token}`,
+						'Content-Type': 'multipart/form-data',
+					},
+				};
+				http
+				.post("http://localhost:8081/api/aggpublications", formData, token)
+				.then((response) => {
+					console.log(response)
+					if (!response.data.err) {
+						listaPost();
+						setCategory("");
+						setDescription("");
+						setHead("");
+						setImg({ preview: "", data: "" });
+					} else {
+						console.log(response.data.err)
+					}
+				})
+				.catch((error) => {
+					console.log('Error:', error);
+				});
 			})
 			.catch((e) => {
 				console.log(e);
 			});
-		let formData = new FormData();
-		formData.append("file", img.data);
-		formData.append("head", head);
-		formData.append("description", description);
-		formData.append("category", category);
-		formData.append("autor", '0');
-		let token = {
-      headers: {
-        Authorization: `Bearer ${activo.token}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-		http
-		.post("http://localhost:8081/api/aggpublications", formData, token)
-		.then((response) => {
-			console.log(response)
-			if (!response.data.err) {
-				listaPost();
-				setCategory("");
-				setDescription("");
-				setHead("");
-				setImg({ preview: "", data: "" });
-			} else {
-				console.log(response.data.err)
-			}
-		})
-		.catch((error) => {
-			console.log('Error:', error);
-		});
 	};
 	if (modal) {
 		return (
