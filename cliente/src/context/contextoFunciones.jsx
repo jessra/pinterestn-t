@@ -141,6 +141,11 @@ export function Contexto_DataProvider(props) {
     })
   }
 
+  function cerrarSesion() {
+    localStorage.removeItem('pinterestnt');
+    window.location.href = '/LogIn';
+  }
+
   return <Contexto_Funciones.Provider value={{
     iniciarCuenta,
     modal,
@@ -155,7 +160,8 @@ export function Contexto_DataProvider(props) {
     postSelect,
     postFav,
     listaActivo,
-    listaPostUser
+    listaPostUser,
+    cerrarSesion
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

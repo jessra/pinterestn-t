@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/Navbar";
 import ContenedorImg from "../components/ContenedorImg"
 import ModalCrear from "../components/ModalCrear"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 export default function Perfil() {
-	const { post, listaPostUser, activo } = useContext(Contexto_Funciones);
+	const { post, listaPostUser, activo, cerrarSesion } = useContext(Contexto_Funciones);
 	useEffect((e) => {
 		listaPostUser();
 	}, []);
@@ -13,7 +13,7 @@ export default function Perfil() {
 		<>
 			<Navbar />
 			<ModalCrear />
-			<button className="btn-flat secundario pequeño float-right">
+			<button onClick={(e) => cerrarSesion()} className="btn-flat secundario pequeño float-right">
 				<FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
 				<span className="px-2">Cerrar sesión</span>
 			</button>
