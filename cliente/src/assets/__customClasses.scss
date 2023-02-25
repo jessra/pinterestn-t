@@ -140,7 +140,7 @@ a.texto-link {
 		display: flex;
 		flex-wrap: wrap;
 		padding-bottom: 1rem;
-		justify-content: center;
+		justify-content: space-evenly;
 		& .contenedor-img {
 			margin-left: auto;
 			margin-right: auto;
