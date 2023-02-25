@@ -40,6 +40,8 @@ module.exports = function(app) {
     publication.create(req, name, res)
   });
   app.post('/api/publication', publication.findOnePub)
+  app.post('/api/filpubcat', verify, publication.findAllFilCat)
+  app.post('/api/filpubautor', verify, publication.findAllFilAutor)
   app.post('/api/perfil', verify, function (req, res) {
     publication.findAllUser(req, res)
   })

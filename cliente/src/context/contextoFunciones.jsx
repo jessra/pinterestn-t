@@ -210,6 +210,36 @@ export function Contexto_DataProvider(props) {
     })
   }
 
+  function filtrar (cat, autor) {
+    const token = {
+      headers: {
+        authorization: `Bearer ${activo.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    if (cat) {
+      http
+      .post(`/filpubcat`, {cat: cat, autor: autor}, token)
+      .then(response => {
+        setPost(response.data.reverse())
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    } else if (autor && !cat) {
+      http
+      .post(`/filpubautor`, {autor: autor}, token)
+      .then(response => {
+        setPost(response.data.reverse())
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    } else {
+      listaPost()
+    }
+  }
+
   return <Contexto_Funciones.Provider value={{
     iniciarCuenta,
     modal,
@@ -226,7 +256,8 @@ export function Contexto_DataProvider(props) {
     listaPostUser,
     cerrarSesion,
     botonFavorito,
-    eliminarPost
+    eliminarPost,
+    filtrar
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

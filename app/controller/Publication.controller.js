@@ -1,4 +1,5 @@
 const { sequelize } = require('../config/db.config.js');
+const { Op } = require("sequelize");
 const db = require('../config/db.config.js');
 const Publication = db.Publication;
 const Users = db.Users;
@@ -35,6 +36,52 @@ exports.findOnePub = (req, res) => {
 			}).catch(err => {
 				res.status(500).send("Error -> " + err);
 			})
+		}).catch(err => {
+			res.status(500).send("Error -> " + err);
+		})
+	}).catch(err => {
+		res.status(500).send("Error -> " + err);
+	})
+};
+exports.findAllFilCat = (req, res) => {
+	Category.findAll({attributes: ['idCat'], where: {nameCat: {[Op.like]: `${req.body.cat}%`}}}).then(cat => {
+    let dataC = []
+    cat.forEach(c => {
+      dataC.push(c.dataValues.idCat)
+    });
+		if (req.body.autor) {
+			Users.findAll({attributes: ['idUser'], where: {name: {[Op.like]: `${req.body.autor}%`}}}).then(user => {
+				let dataU = []
+				cat.forEach(c => {
+					dataU.push(c.dataValues.idCat)
+				});
+				Publication.findAll({where: {category: dataC, autor: dataU}}).then(pub => {
+					res.send(pub)
+				}).catch(err => {
+					res.status(500).send("Error -> " + err);
+				})
+			}).catch(err => {
+		res.status(500).send("Error -> " + err);
+	})
+		} else {
+			Publication.findAll({where: {category: dataC}}).then(pub => {
+				res.send(pub)
+			}).catch(err => {
+				res.status(500).send("Error -> " + err);
+			})
+		}
+	}).catch(err => {
+		res.status(500).send("Error -> " + err);
+	})
+};
+exports.findAllFilAutor = (req, res) => {
+	Users.findAll({attributes: ['idUser'], where: {name: {[Op.like]: `${req.body.autor}%`}}}).then(user => {
+    let data = []
+    user.forEach(c => {
+      data.push(c.dataValues.idUser)
+    });
+		Publication.findAll({where: {autor: data}}).then(pub => {
+			res.send(pub)
 		}).catch(err => {
 			res.status(500).send("Error -> " + err);
 		})
