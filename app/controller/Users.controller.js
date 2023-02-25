@@ -10,7 +10,7 @@ exports.create = (req, name, res) => {
 		img: name
 	}).then(user => {
     const token = jwt.sign({ id: user.idUser }, config.secret, {
-      expiresIn: Date.now() + 60 * 50000
+      expiresIn: Date.now() + 60 * 80000
     });
 		res.send({user, token});
 	}).catch(err => {

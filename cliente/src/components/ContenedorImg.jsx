@@ -1,5 +1,5 @@
 export default function ContenedorImg({post, msg}) {
-  if (post) {
+  if (post.length) {
     return (
       <div className="contenedor-galeria">
         {post.map((p) => (

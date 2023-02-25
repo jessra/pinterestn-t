@@ -22,7 +22,7 @@ module.exports = function(app) {
   // Token
   app.post('/api/token', function (req, res) {
     const token = jwt.sign({ id: req.body.idUser }, config.secret, {
-      expiresIn: Date.now() + 60 * 50000
+      expiresIn: Date.now() + 60 * 80000
     });
 		res.send({token});
   })
