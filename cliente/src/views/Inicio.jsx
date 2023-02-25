@@ -11,9 +11,9 @@ export function Inicio() {
 	const vistaActual = window.location.href
 	const route = vistaActual.split('/')[3]
 	if (route == 'Favoritos') {
-		msg = 'No hay favoritos'
+		msg = 'Aun no has guardado nada en favoritos, pásate por la vista de inicio a ver si te gusta algo'
 	} else {
-		msg = 'No hay publicaciones'
+		msg = 'Ups... parece que aun no hay publicaciones ¿qué tal si empiezas tú por publicar una?'
 	}
 	return (
 		<>

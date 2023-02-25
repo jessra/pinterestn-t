@@ -26,7 +26,7 @@ export default function Perfil() {
 					<img src={"./src/imagenesTemporales/" + activo.user.img} alt="" />
 				</div>
 			</div>
-			<ContenedorImg post={post} msg={'No has hecho publicaciones'}/>
+			<ContenedorImg post={post} msg={'Parece que aun no has creado tu primera publicación ¿qué tal si le das al botón de ”Crear”?'}/>
 		</>
 	);
 }

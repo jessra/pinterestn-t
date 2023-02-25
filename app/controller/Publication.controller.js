@@ -30,6 +30,7 @@ exports.update = (req, name, res) => {
 			nameCat: req.body.category
 		}
 	}).then(cat => {
+		console.log(cat[0].dataValues.idCat);
 		Publication.update({ category: cat[0].dataValues.idCat }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
 			res.send(err)
