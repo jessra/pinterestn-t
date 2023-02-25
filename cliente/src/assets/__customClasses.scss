@@ -1,4 +1,4 @@
-a.texto-link {
+.texto-link {
 	font-weight: 500;
 	text-decoration: inherit;
 	text-align: center;
@@ -9,6 +9,9 @@ a.texto-link {
 	&:hover {
 		color: $primario;
 	}
+}
+a {
+	color: inherit;
 }
 .titulo {
 	font-size: 1.7rem;

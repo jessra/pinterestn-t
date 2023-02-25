@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
+import { Link } from "react-router-dom";
 import http from "../http-common";
 
 function LogIn() {
@@ -32,9 +33,9 @@ function LogIn() {
 					/>
 					<label htmlFor="contraseña">Contraseña</label>
 				</div>
-				<a href="/SingIn" className="texto-link">
+				<Link to="/SingIn" className="texto-link">
 					No tengo cuenta
-				</a>
+				</Link>
 				<button
 					className="btn-flat primario "
 					onClick={(e) => {
@@ -126,9 +127,9 @@ function SingIn() {
 						<span className="px-2">Subir imagen</span>
 					</label>
 				</div>
-				<a href="/LogIn" className="texto-link">
+				<Link to="/LogIn" className="texto-link">
 					Ya tengo una cuenta
-				</a>
+				</Link>
 				<button className="btn-flat primario " onClick={enviarImg}>
 					¡Listo!
 				</button>

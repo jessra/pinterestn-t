@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
+import { Outlet } from "react-router-dom";
 
 export default function Navbar() {
 	const [mostrarUl, setMostrarUl] = useState(true);
@@ -41,7 +42,7 @@ export default function Navbar() {
 				<div className="logo animacion-rotar">
 					<img alt="Pinterestn´t" src="../src/assets/logo.png" />
 				</div>
-				{ !route ? 
+				{ !route ?
 					(<div className="buscador d-lg-none">
 						<button className="btn-outline secundario" onClick={() => setMostrarUl(!mostrarUl)}>
 							<FontAwesomeIcon
@@ -192,6 +193,7 @@ export default function Navbar() {
 				<FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
 				<span className="d-none d-md-inline px-2">Crear</span>
 			</button>
+			<Outlet />
 		</>
 	);
 }
