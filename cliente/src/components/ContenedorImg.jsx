@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 export default function ContenedorImg({post, msg}) {
   if (post.length) {
     return (
@@ -16,4 +17,9 @@ export default function ContenedorImg({post, msg}) {
       </div>
     );
   }
+}
+
+ContenedorImg.propTypes = {
+  post: PropTypes.array.isRequired,
+  msg: PropTypes.string.isRequired,
 }
