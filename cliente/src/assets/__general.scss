@@ -142,10 +142,13 @@
 }
 .justify- {
 	&between {
-		justify-content: space-between;
+		justify-content: space-between !important;
 	}
 	&center {
-		justify-content: center;
+		justify-content: center !important;
+	}
+	&evenly {
+		justify-content: space-evenly !important;
 	}
 }
 
