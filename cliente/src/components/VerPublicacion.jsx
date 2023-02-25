@@ -67,7 +67,7 @@ export default function VerPublicacion() {
 									<FontAwesomeIcon icon="fa-solid fa-arrow-left" />
 									<span
 										className="px-2 d-none d-sm-inline"
-										onClick={(e) => (window.location.href = document.referrer)}
+										onClick={(e) => (window.location.href = "/")}
 									>
 										Atrás
 									</span>
