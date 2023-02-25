@@ -75,6 +75,7 @@ a.texto-link {
 .contenedor {
 	&-img {
 		border-radius: 1rem;
+		cursor: pointer;
 		position: relative;
 		overflow: hidden;
 		margin: 0.5rem;
@@ -282,6 +283,7 @@ a.texto-link {
 button {
 	border-radius: 8px;
 	border: 1px solid transparent;
+	cursor: pointer;
 	padding: 0.5rem;
 	font-size: 0.8rem;
 	font-weight: bold;

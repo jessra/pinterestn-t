@@ -2,6 +2,7 @@ module.exports = function(app) {
   const users = require('../controller/Users.controller.js');
   const publication = require('../controller/Publication.controller.js');
   const category = require('../controller/Category.controller.js');
+  const favs = require('../controller/Favs.controller.js');
   const verify = require('../controller/Verify.controller');
   const jwt = require('jsonwebtoken');
   const config = require('../config')
@@ -46,4 +47,10 @@ module.exports = function(app) {
   // Categorys
   app.get('/api/category', category.findAll);
   app.post('/api/dupcategory', category.findOrCreate)
+  
+  // Favs
+  app.post('/api/favoritos', verify, favs.findAll);
+  app.post('/api/favorito', verify, function (req, res) {
+    favs.create(req, res)
+  })
 }

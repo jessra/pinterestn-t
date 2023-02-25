@@ -6,7 +6,6 @@ export function Contexto_DataProvider(props) {
   const [users, setUsers] = useState([]);
   const [post, setPost] = useState([]);
   const [postSelect, setPostSelect] = useState([])
-  const [postFav, setPostFav] = useState([])
   const [cat, setCat] = useState([]);
   const [activo, setActivo] = useState({user: {img: '', name: ''}});
   const [modal, setModal] = useState(false);
@@ -16,6 +15,8 @@ export function Contexto_DataProvider(props) {
   useEffect((e) => {
     if (route == 'Perfil') {
       listaPostUser()
+    } else if (route == 'Favoritos') {
+      listarFavs()
     } else {
       listaPost()
     }
@@ -46,7 +47,7 @@ export function Contexto_DataProvider(props) {
       const token = {
         headers: {
           authorization: `Bearer ${dataT.token}`,
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
       };
       await http
@@ -60,7 +61,31 @@ export function Contexto_DataProvider(props) {
       })
       setPost(dataPost)
   } catch {
-
+    console.log('Ocurrio un error')
+  }
+  }
+  async function listarFavs () {
+    try {
+      let dataFav = []
+      const dataT = await JSON.parse(localStorage.getItem('pinterestnt'))
+      const token = {
+        headers: {
+          authorization: `Bearer ${dataT.token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+      http
+      .post('/favoritos', {},token)
+      .then(response => {
+        dataFav = response.data
+        setPost(dataFav)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+      setPost(dataFav)
+  } catch {
+    console.log('Ocurrio un error')
   }
   }
   function listaUsurios () {
@@ -146,6 +171,24 @@ export function Contexto_DataProvider(props) {
     window.location.href = '/LogIn';
   }
 
+  function botonFavorito(pub) {
+    const token = {
+      headers: {
+        authorization: `Bearer ${activo.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    http
+    .post('/favorito', {pub: pub, user: activo.user.idUser}, token)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e)
+      return {error: 'error'}
+    })
+  }
+
   return <Contexto_Funciones.Provider value={{
     iniciarCuenta,
     modal,
@@ -158,10 +201,10 @@ export function Contexto_DataProvider(props) {
     listaUsurios,
     verPost,
     postSelect,
-    postFav,
     listaActivo,
     listaPostUser,
-    cerrarSesion
+    cerrarSesion,
+    botonFavorito
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

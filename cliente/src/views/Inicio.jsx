@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export function Inicio() {
-	let data = []
 	let msg = ''
 	const { post } = useContext(Contexto_Funciones);
 	const vistaActual = window.location.href
@@ -14,7 +13,6 @@ export function Inicio() {
 	if (route == 'Favoritos') {
 		msg = 'No hay favoritos'
 	} else {
-		data = post
 		msg = 'No hay publicaciones'
 	}
 	return (
@@ -22,7 +20,7 @@ export function Inicio() {
     <Navbar />
 		<VerPublicacion/>
 		<ModalCrear />
-		<ContenedorImg post={data} msg={msg}/>
+		<ContenedorImg post={post} msg={msg}/>
 		</>
 	);
 }

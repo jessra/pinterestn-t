@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function VerPublicacion() {
-	const { verPost, postSelect } = useContext(Contexto_Funciones);
+	const { verPost, postSelect, botonFavorito } = useContext(Contexto_Funciones);
 	const [editar, setEditar] = useState(false);
 	const vistaActual = window.location.href;
 	const route = vistaActual.split("/")[4];
@@ -128,7 +128,7 @@ export default function VerPublicacion() {
 							</button>
 						</div>
 						<div className="col-auto">
-							<button className="btn-flat primario animacion-rotar">
+							<button onClick={(e) => botonFavorito(postSelect.pub.idPub)} className="btn-flat primario animacion-rotar">
 								<FontAwesomeIcon icon="fa-solid fa-heart" />
 								<span className="px-2 d-none d-sm-inline">Favorito</span>
 							</button>

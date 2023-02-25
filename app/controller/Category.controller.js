@@ -2,7 +2,6 @@ const db = require('../config/db.config.js');
 const Category = db.Category;
 
 exports.findOrCreate = (req, res) => {
-  console.log(req.body);
 	Category.findOrCreate({
 		attributes: ['idCat'],
 		where: {
