@@ -65,8 +65,13 @@ function SingIn() {
 		formData.append("file", img.data);
     formData.append("name", user);
     formData.append("pass", pass);
+		let header = {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		};
 		http
-		.post("http://localhost:8081/api/aggusers", formData)
+		.post("http://localhost:8081/api/aggusers", formData, header)
 		.then((response) => {
 			if (response.data.err) {
 				console.log(response.data.err)
