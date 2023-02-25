@@ -9,6 +9,10 @@ export function Contexto_DataProvider(props) {
   const [cat, setCat] = useState([]);
   const [activo, setActivo] = useState({user: {img: '', name: ''}});
   const [modal, setModal] = useState(false);
+	const [headE, setHeadE] = useState("");
+	const [descriptionE, setDescriptionE] = useState("");
+	const [categoryE, setCategoryE] = useState("");
+	const [imgE, setImgE] = useState({ preview: "", data: "" });
 	const vistaActual = window.location.href
 	const route = vistaActual.split('/')[3]
 
@@ -158,7 +162,11 @@ export function Contexto_DataProvider(props) {
     .post('/publication', data)
     .then(response => {
       const data = response.data
+      setCategoryE(data.cat.nameCat)
+      setHeadE(data.pub.head)
       setPostSelect(data)
+      setDescriptionE(data.pub.description)
+      setImgE({preview: `../src/imagenesTemporales/${data.pub.img}`, data: ''})
     })
     .catch(e => {
       console.log(e)
@@ -257,7 +265,11 @@ export function Contexto_DataProvider(props) {
     cerrarSesion,
     botonFavorito,
     eliminarPost,
-    filtrar
+    filtrar,
+    headE, setHeadE,
+    descriptionE, setDescriptionE,
+    categoryE, setCategoryE,
+    imgE, setImgE
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

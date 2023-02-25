@@ -39,6 +39,9 @@ module.exports = function(app) {
   app.post('/api/aggpublications', verify, upload.single('file'), function (req, res) {
     publication.create(req, name, res)
   });
+  app.post('/api/editpublications', verify, upload.single('file'), function (req, res) {
+    publication.update(req, name, res)
+  });
   app.post('/api/publication', publication.findOnePub)
   app.post('/api/filpubcat', verify, publication.findAllFilCat)
   app.post('/api/filpubautor', verify, publication.findAllFilAutor)

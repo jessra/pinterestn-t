@@ -19,6 +19,50 @@ exports.create = (req, name, res) => {
 		res.send({err});
 	})
 };
+exports.update = (req, name, res) => {
+	if (req.body.category) {
+	Category.findOrCreate({
+		attributes: ['idCat'],
+		where: {
+			nameCat: req.body.category
+		},
+		default: {
+			nameCat: req.body.category
+		}
+	}).then(cat => {
+		Publication.update({ category: cat[0].dataValues.idCat }, { where: {idPub: req.body.id} }).then(pub => {
+		}).catch(err => {
+			res.send(err)
+		})
+	}).catch(err => {
+	})
+	}
+	if (req.body.head) {
+		Publication.update({ head: req.body.head }, { where: {idPub: req.body.id} }).then(pub => {
+		}).catch(err => {
+			res.send(err)
+		})
+	}
+	if (req.body.description) {
+		Publication.update({ description: req.body.description }, { where: {idPub: req.body.id} }).then(pub => {
+		}).catch(err => {
+			res.send(err)
+		})
+	}
+	if (req.body.category) {
+		Publication.update({ category: req.body.category }, { where: {idPub: req.body.id} }).then(pub => {
+		}).catch(err => {
+			res.send(err)
+		})
+	}
+	if (name) {
+		Publication.update({ img: name }, { where: {idPub: req.body.id} }).then(pub => {
+		}).catch(err => {
+			res.send(err)
+		})
+	}
+	res.send({msj: 'Editado exitosamente'})
+};
 
 exports.findAll = (req, res) => {
 	Publication.findAll().then(pub => {

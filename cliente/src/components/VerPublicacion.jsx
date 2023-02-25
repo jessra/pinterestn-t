@@ -1,11 +1,56 @@
 import { useContext, useEffect, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import http from "../http-common";
+
 export default function VerPublicacion() {
-	const { verPost, postSelect, botonFavorito, activo, eliminarPost } = useContext(Contexto_Funciones);
+	const { verPost, postSelect, botonFavorito, activo, eliminarPost, cat, headE, setHeadE, descriptionE, setDescriptionE, categoryE, setCategoryE, imgE, setImgE } = useContext(Contexto_Funciones);
 	const [editar, setEditar] = useState(false);
 	const vistaActual = window.location.href;
 	const route = vistaActual.split("/")[4];
+	const cambioImg = (e) => {
+		const img = {
+			preview: URL.createObjectURL(e.target.files[0]),
+			data: e.target.files[0],
+		};
+		setImgE(img);
+	};
+	const edit = async (e) => {
+		e.preventDefault();
+		let formData = new FormData();
+		if (categoryE != postSelect.cat.nameCat) {
+			formData.append("category", categoryE);
+		}
+		if (imgE.data) {
+			formData.append("file", imgE.data);
+		}
+		if (headE != postSelect.pub.head) {
+			formData.append("head", headE);
+		}
+		if (descriptionE != postSelect.pub.description) {
+			formData.append("description", descriptionE);
+		}
+		formData.append("id", postSelect.pub.idPub);
+		let token = {
+			headers: {
+				authorization: `Bearer ${activo.token}`,
+				'Content-Type': 'multipart/form-data',
+			},
+		};
+		await http
+		.post("http://localhost:8081/api/editpublications", formData, token)
+		.then((response) => {
+			console.log(response)
+			if (!response.data.err) {
+				verPost(postSelect.pub.idPub);
+			} else {
+				console.log(response.data.err)
+			}
+		})
+		.catch((error) => {
+			console.log('Error:', error);
+		});
+	};
 	if (route) {
 		useEffect((e) => {
 			verPost(route);
@@ -39,7 +84,7 @@ export default function VerPublicacion() {
 								</button>
 							</div>
 							<div className="col-auto">
-								<button className="btn-flat primario animacion-rotar">
+								<button className="btn-flat primario animacion-rotar" onClick={edit}>
 									<FontAwesomeIcon icon="fa-solid fa-check" />
 									<span className="px-2 d-none d-sm-inline">Guardar</span>
 								</button>
@@ -47,7 +92,7 @@ export default function VerPublicacion() {
 						</div>
 						<div className="col-12 col-sm-6 col-lg-7 col-xl-5">
 							<div className="contenedor-img">
-								<img src={"../src/imagenesTemporales/" + postSelect.pub.img} alt="" />
+								<img src={imgE.preview} alt="" />
 							</div>
 						</div>
 						<div className="col-sm-6 col-lg-5 col-xl-3 flip-scale-up">
@@ -58,7 +103,7 @@ export default function VerPublicacion() {
 									name="image"
 									accept=".jpg, .jpeg, .png"
 									className="wh-100"
-									// onChange={cambioImg}
+									onChange={cambioImg}
 									required
 								/>
 								<label htmlFor="image">
@@ -70,8 +115,8 @@ export default function VerPublicacion() {
 								<input
 									type="text"
 									id="titulo"
-									// value={head}
-									// onChange={(e) => setHead(e.target.value)}
+									value={headE}
+									onChange={(e) => setHeadE(e.target.value)}
 								/>
 								<label htmlFor="titulo">Titulo</label>
 							</div>
@@ -81,25 +126,25 @@ export default function VerPublicacion() {
 									multiple
 									id="categoria"
 									list="categorias"
-									// value={category}
-									// onChange={(e) => setCategory(e.target.value.toUpperCase())}
+									value={categoryE}
+									onChange={(e) => setCategoryE(e.target.value.toUpperCase())}
 								/>
 								<label htmlFor="categoria">Categoría</label>
-								{/* <datalist id="categorias">
+								<datalist id="categorias">
 									{cat.map((c) => (
 										<option key={c.idCat} value={c.nameCat}>
 											{c.nameCat}
 										</option>
 									))}
-								</datalist> */}
+								</datalist>
 							</div>
 							<div className="grupo-inputs">
 								<textarea
 									id="descripcion"
 									cols="30"
 									rows="10"
-									// value={description}
-									// onChange={(e) => setDescription(e.target.value)}
+									value={descriptionE}
+									onChange={(e) => setDescriptionE(e.target.value)}
 								></textarea>
 								<label htmlFor="descripcion">Descripción</label>
 							</div>
