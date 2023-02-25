@@ -121,20 +121,20 @@ export default function VerPublicacion() {
 								</span>
 							</button>
 						</div>
-						<div className="col-auto">
-							<button className="btn-outline" onClick={() => setEditar(true)}>
-								<FontAwesomeIcon icon="fa-solid fa-pen" />
-								<span className="px-2 d-none d-sm-inline">Editar</span>
-							</button>
-						</div>
 						{ activo.user.idUser == postSelect.pub.autor ?
 								(<div className="col-auto">
-									<button onClick={(e) => botonFavorito(postSelect.pub.idPub)} className="btn-flat primario animacion-rotar">
-										<FontAwesomeIcon icon="fa-solid fa-heart" />
-										<span className="px-2 d-none d-sm-inline">Favorito</span>
-									</button>
-								</div>) : (<></>)
+										<button className="btn-outline" onClick={() => setEditar(true)}>
+											<FontAwesomeIcon icon="fa-solid fa-pen" />
+											<span className="px-2 d-none d-sm-inline">Editar</span>
+										</button>
+									</div>) : (<></>)
 						}
+						<div className="col-auto">
+							<button onClick={(e) => botonFavorito(postSelect.pub.idPub)} className="btn-flat primario animacion-rotar">
+								<FontAwesomeIcon icon="fa-solid fa-heart" />
+								<span className="px-2 d-none d-sm-inline">Favorito</span>
+							</button>
+						</div>
 					</div>
 					<div className="col-12 col-xl-5 p-2">
 						<div className="contenedor-img">
