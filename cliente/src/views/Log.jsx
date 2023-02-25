@@ -13,7 +13,7 @@ function LogIn() {
 				<img src="../src/assets/logo.png" alt="" />
 			</div>
 			<div className="formulario">
-				<p className="titulo my-2">Inicia sesión</p>
+				<p className="titulo text-center my-2">Inicia sesión</p>
 				<div className="grupo-inputs">
 					<input
 						type="text"
@@ -87,7 +87,7 @@ function SingIn() {
 				<img src="../src/assets/logo.png" alt="" />
 			</div>
 			<div className="formulario">
-				<p className="titulo my-2">Crea tu cuenta</p>
+				<p className="titulo text-center my-2">Crea tu cuenta</p>
 				<div className="grupo-inputs">
 					<input
 						type="text"
