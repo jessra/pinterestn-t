@@ -43,6 +43,13 @@ module.exports = function(app) {
   app.post('/api/perfil', verify, function (req, res) {
     publication.findAllUser(req, res)
   })
+  app.delete('/api/eliminar/:id/:img', verify, function (req, res) {
+    const fs = require("fs")
+    let pathViejo = 'cliente/src/imagenesTemporales/' + req.params.img
+    console.log(fs.existsSync(pathViejo))
+    if (fs.existsSync(pathViejo)) fs.unlinkSync(pathViejo)
+    publication.destroy(req, res)
+  })
 
   // Categorys
   app.get('/api/category', category.findAll);

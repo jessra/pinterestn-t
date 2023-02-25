@@ -189,6 +189,27 @@ export function Contexto_DataProvider(props) {
     })
   }
 
+  function eliminarPost(id, img) {
+    const token = {
+      headers: {
+        authorization: `Bearer ${activo.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(activo.token)
+    http
+    .delete(`/eliminar/${id}/${img}`, token)
+    .then(response => {
+      console.log(response.data);
+      listaPost()
+      window.location.href = '/';
+    })
+    .catch(e => {
+      console.log(e)
+      return {error: 'error'}
+    })
+  }
+
   return <Contexto_Funciones.Provider value={{
     iniciarCuenta,
     modal,
@@ -204,7 +225,8 @@ export function Contexto_DataProvider(props) {
     listaActivo,
     listaPostUser,
     cerrarSesion,
-    botonFavorito
+    botonFavorito,
+    eliminarPost
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

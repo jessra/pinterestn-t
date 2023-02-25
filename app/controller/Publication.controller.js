@@ -50,3 +50,10 @@ exports.findAllUser = (req, res) => {
 		res.status(500).send("Error -> " + err);
 	})
 };
+exports.destroy = (req, res) => {
+	Publication.destroy({where: {idPub: req.params.id}}).then(pub => {
+		res.send({msg: 'Eliminado'});
+	}).catch(err => {
+		res.status(500).send("Error -> " + err);
+	})
+};

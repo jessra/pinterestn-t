@@ -46,6 +46,7 @@ export default function CrearPublicacion() {
 						setDescription("");
 						setHead("");
 						setImg({ preview: "", data: "" });
+						setModal(false)
 					} else {
 						console.log(response.data.err)
 					}

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function VerPublicacion() {
-	const { verPost, postSelect, botonFavorito } = useContext(Contexto_Funciones);
+	const { verPost, postSelect, botonFavorito, activo, eliminarPost } = useContext(Contexto_Funciones);
 	const [editar, setEditar] = useState(false);
 	const vistaActual = window.location.href;
 	const route = vistaActual.split("/")[4];
@@ -27,7 +27,7 @@ export default function VerPublicacion() {
 								</button>
 							</div>
 							<div className="col-auto">
-								<button className="btn-outline">
+								<button className="btn-outline" onClick={(e) => eliminarPost(postSelect.pub.idPub, postSelect.pub.img)}>
 									<FontAwesomeIcon icon="fa-solid fa-trash" />
 									<span className="px-2 d-none d-sm-inline">Eliminar</span>
 								</button>
@@ -127,12 +127,14 @@ export default function VerPublicacion() {
 								<span className="px-2 d-none d-sm-inline">Editar</span>
 							</button>
 						</div>
-						<div className="col-auto">
-							<button onClick={(e) => botonFavorito(postSelect.pub.idPub)} className="btn-flat primario animacion-rotar">
-								<FontAwesomeIcon icon="fa-solid fa-heart" />
-								<span className="px-2 d-none d-sm-inline">Favorito</span>
-							</button>
-						</div>
+						{ activo.user.idUser == postSelect.pub.autor ?
+								(<div className="col-auto">
+									<button onClick={(e) => botonFavorito(postSelect.pub.idPub)} className="btn-flat primario animacion-rotar">
+										<FontAwesomeIcon icon="fa-solid fa-heart" />
+										<span className="px-2 d-none d-sm-inline">Favorito</span>
+									</button>
+								</div>) : (<></>)
+						}
 					</div>
 					<div className="col-12 col-xl-5 p-2">
 						<div className="contenedor-img">
