@@ -2,11 +2,31 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTrash,
   faThumbsUp,
-  faTimes
+  faXmark,
+  faArrowLeft,
+  faHouse,
+  faHeart,
+  faUser,
+  faRightToBracket,
+  faPen,
+  faPenToSquare,
+  faUpload,
+  faCheck,
+  faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faTrash,
   faThumbsUp,
-  faTimes
+  faXmark,
+  faArrowLeft,
+  faHouse,
+  faHeart,
+  faUser,
+  faRightToBracket,
+  faPen,
+  faPenToSquare,
+  faUpload,
+  faCheck,
+  faMagnifyingGlass
 );

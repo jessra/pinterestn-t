@@ -12,7 +12,7 @@
 }
 :root {
 	background-color: $fondo;
-  color: $secundario;
+	color: $secundario;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -35,11 +35,13 @@
 .gris-muted {
 	color: $gris-claro;
 }
-
+.w-100 {
+	width: 100%;
+}
 // Paddings & Margins
 .mx-auto {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 // Paddings
 @include aroundXY(".px-", "padding-right", "padding-left");
@@ -62,6 +64,12 @@
 @include around-loop(".mb-", "margin-bottom");
 @include around-loop(".mr-", "margin-right");
 @include around-loop(".ml-", "margin-left");
+// Margins responsive
+@include around-loop(".m-md-", "margin", "md");
+@include around-loop(".mt-md-", "margin-top", "md");
+@include around-loop(".mb-md-", "margin-bottom", "md");
+@include around-loop(".mr-md-", "margin-right", "md");
+@include around-loop(".ml-md-", "margin-left", "md");
 
 .pt-md-8 {
 	@media screen and (min-width: 768px) {
@@ -88,6 +96,12 @@
 	}
 }
 
+.float {
+	&-right {
+		float: right;
+	}
+}
+
 .flex- {
 	@include flex;
 	@media screen and (min-width: 576px) {
@@ -106,25 +120,35 @@
 		}
 	}
 }
-.align-items- {
-	&center {
-		align-items: center;
-	}
-	&end {
-		align-items: flex-end;
-		lg-end {
-			@media screen and (min-width: 992px) {
-				align-items: flex-end;
+.align- {
+	&items- {
+		&center {
+			align-items: center;
+		}
+		&end {
+			align-items: flex-end;
+			lg-end {
+				@media screen and (min-width: 992px) {
+					align-items: flex-end;
+				}
 			}
+		}
+	}
+	&self- {
+		&start {
+			align-self: flex-start;
 		}
 	}
 }
 .justify- {
 	&between {
-		justify-content: space-between;
+		justify-content: space-between !important;
 	}
 	&center {
-		justify-content: center;
+		justify-content: center !important;
+	}
+	&evenly {
+		justify-content: space-evenly !important;
 	}
 }
 

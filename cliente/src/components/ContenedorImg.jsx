@@ -1,60 +1,25 @@
-export default function ContenedorImg() {
-	return (
-    <div className="contenedor-galeria">
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
+import PropTypes from 'prop-types'
+export default function ContenedorImg({post, msg}) {
+  if (post.length) {
+    return (
+      <div className="contenedor-galeria">
+        {post.map((p) => (
+          <div onClick={(e) => window.location.href = '/Image/' + p.idPub} key={p.idPub} className="contenedor-img col-5 col-md-3 col-lg-2">
+            <img src={'../src/imagenesTemporales/' + p.img} alt="" />
+          </div>
+        ))}
       </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
+    );
+  } else {
+    return (
+      <div className="contenedor-galeria">
+        <h2>{msg}</h2>
       </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/cyberpunk-edgerunners.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/photo_2023-01-27_11-16-59.jpg" alt="" />
-      </div>
-      <div className="contenedor-img">
-        <img src="./src/imagenesTemporales/Screenshot_20220622_190433.png" alt="" />
-      </div>
-    </div>
-	);
+    );
+  }
+}
+
+ContenedorImg.propTypes = {
+  post: PropTypes.array.isRequired,
+  msg: PropTypes.string.isRequired,
 }
