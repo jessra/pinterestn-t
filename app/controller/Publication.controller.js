@@ -33,7 +33,6 @@ exports.update = (req, name, res) => {
 		console.log(cat[0].dataValues.idCat);
 		Publication.update({ category: cat[0].dataValues.idCat }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
-			res.send(err)
 		})
 	}).catch(err => {
 	})
@@ -41,25 +40,21 @@ exports.update = (req, name, res) => {
 	if (req.body.head) {
 		Publication.update({ head: req.body.head }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
-			res.send(err)
 		})
 	}
 	if (req.body.description) {
 		Publication.update({ description: req.body.description }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
-			res.send(err)
 		})
 	}
 	if (req.body.category) {
 		Publication.update({ category: req.body.category }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
-			res.send(err)
 		})
 	}
 	if (name) {
 		Publication.update({ img: name }, { where: {idPub: req.body.id} }).then(pub => {
 		}).catch(err => {
-			res.send(err)
 		})
 	}
 	res.send({msj: 'Editado exitosamente'})

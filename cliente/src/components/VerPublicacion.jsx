@@ -44,7 +44,7 @@ export default function VerPublicacion() {
 			if (!response.data.err) {
 				setTimeout(() => {
 					verPost(postSelect.pub.idPub);
-				}, 1000);
+				}, 5000);
 			} else {
 				console.log(response.data.err)
 			}
