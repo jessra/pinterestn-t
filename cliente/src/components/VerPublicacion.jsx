@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import http from "../http-common";
 
 export default function VerPublicacion() {
-	const { verPost, postSelect, botonFavorito, activo, eliminarPost, cat, headE, setHeadE, descriptionE, setDescriptionE, categoryE, setCategoryE, imgE, setImgE } = useContext(Contexto_Funciones);
+	const { verPost, postSelect, botonFavorito, activo, eliminarPost, cat, headE, setHeadE, descriptionE, 
+		setDescriptionE, categoryE, setCategoryE, imgE, setImgE, Alert } = useContext(Contexto_Funciones);
 	const [editar, setEditar] = useState(false);
 	const vistaActual = window.location.href;
 	const route = vistaActual.split("/")[4];
@@ -42,15 +43,18 @@ export default function VerPublicacion() {
 		.then((response) => {
 			console.log(response)
 			if (!response.data.err) {
+				Alert('Se han actualizado los datos', true)
 				setTimeout(() => {
 					verPost(postSelect.pub.idPub);
 				}, 5000);
 			} else {
 				console.log(response.data.err)
+				Alert('Ha ocurrido un error', false)
 			}
 		})
 		.catch((error) => {
 			console.log('Error:', error);
+			Alert('Ha ocurrido un error', false)
 		});
 	};
 	if (route) {

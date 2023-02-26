@@ -29,6 +29,30 @@ export function Contexto_DataProvider(props) {
     listaCategorias()
   }, [])
 
+  
+  function Alert(men, tipo) {
+    if (tipo) {
+      document.getElementById('notificacion').classList.add('color-success');
+    } else {
+      document.getElementById('notificacion').classList.add('color-error');
+    }
+
+    document.getElementById('notificacion').innerHTML = '';
+    document.getElementById('notificacion').innerHTML +=
+      `
+    <i class="fa-solid fa-circle-check"></i>
+    <p class="m-0 px-2">` +
+      men +
+      `</p>`;
+    setTimeout(() => {
+      if (tipo) {
+        document.getElementById('notificacion').classList.remove('color-success');
+      } else {
+        document.getElementById('notificacion').classList.remove('color-error');
+      }
+      document.getElementById('notificacion').innerHTML = '';
+    }, 5000);
+  }
   function listaPost () {
     let dataPost = []
     http
@@ -143,14 +167,18 @@ export function Contexto_DataProvider(props) {
                 window.location.href = '/';
               } else {
                 console.log(response.data.err)
+                Alert('Ha sucedido un problema', false)
               }
             })
             .catch((error) => {
               console.log('Error:', error);
+              Alert('Ha sucedido un problema', false)
             });
           }
         }
       })
+    } else {
+      Alert('Por favor rellene todos los campos', false)
     }
   }
 
@@ -189,7 +217,7 @@ export function Contexto_DataProvider(props) {
     http
     .post('/favorito', {pub: pub, user: activo.user.idUser}, token)
     .then(response => {
-      console.log(response.data);
+			Alert(response.data.msg, true);
     })
     .catch(e => {
       console.log(e)
@@ -208,9 +236,11 @@ export function Contexto_DataProvider(props) {
     http
     .delete(`/eliminar/${id}/${img}`, token)
     .then(response => {
-      console.log(response.data);
       listaPost()
-      window.location.href = '/';
+      Alert('Se ha eliminado la publicación')
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
     })
     .catch(e => {
       console.log(e)
@@ -269,7 +299,8 @@ export function Contexto_DataProvider(props) {
     headE, setHeadE,
     descriptionE, setDescriptionE,
     categoryE, setCategoryE,
-    imgE, setImgE
+    imgE, setImgE,
+    Alert
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

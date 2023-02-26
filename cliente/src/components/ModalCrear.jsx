@@ -4,7 +4,7 @@ import http from "../http-common";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function CrearPublicacion() {
-	const { modal, setModal, activo, listaPost, cat } = useContext(Contexto_Funciones);
+	const { modal, setModal, activo, listaPost, cat, Alert } = useContext(Contexto_Funciones);
 	const [head, setHead] = useState("");
 	const [description, setDescription] = useState("");
 	const [category, setCategory] = useState("");
@@ -18,46 +18,53 @@ export default function CrearPublicacion() {
 	};
 	const enviarImg = (e) => {
 		e.preventDefault();
-		const data = {
-			category,
-		};
-		http
-			.post("/dupcategory", data)
-			.then((response) => {
-				const cat = response.data[0].idCat;
-				let formData = new FormData();
-				formData.append("file", img.data);
-				formData.append("head", head);
-				formData.append("description", description);
-				formData.append("category", cat);
-				let token = {
-					headers: {
-						authorization: `Bearer ${activo.token}`,
-						'Content-Type': 'multipart/form-data',
-					},
-				};
-				http
-				.post("http://localhost:8081/api/aggpublications", formData, token)
+		if (category && head && img.data) {
+			const data = {
+				category,
+			};
+			http
+				.post("/dupcategory", data)
 				.then((response) => {
-					console.log(response)
-					if (!response.data.err) {
-						listaPost();
-						setCategory("");
-						setDescription("");
-						setHead("");
-						setImg({ preview: "", data: "" });
-						setModal(false)
-					} else {
-						console.log(response.data.err)
-					}
+					const cat = response.data[0].idCat;
+					let formData = new FormData();
+					formData.append("file", img.data);
+					formData.append("head", head);
+					formData.append("description", description);
+					formData.append("category", cat);
+					let token = {
+						headers: {
+							authorization: `Bearer ${activo.token}`,
+							'Content-Type': 'multipart/form-data',
+						},
+					};
+					http
+					.post("http://localhost:8081/api/aggpublications", formData, token)
+					.then((response) => {
+						console.log(response)
+						if (!response.data.err) {
+							listaPost();
+							setCategory("");
+							setDescription("");
+							setHead("");
+							setImg({ preview: "", data: "" });
+							setModal(false)
+							Alert('Publicado', true)
+						} else {
+							console.log(response.data.err)
+							Alert('Ha sucedido un problema', false)
+						}
+					})
+					.catch((error) => {
+						console.log('Error:', error);
+						Alert('Ha sucedido un problema', false)
+					});
 				})
-				.catch((error) => {
-					console.log('Error:', error);
+				.catch((e) => {
+					console.log(e);
 				});
-			})
-			.catch((e) => {
-				console.log(e);
-			});
+		} else {
+			Alert('Por favor rellena todos los campos', false)
+		}
 	};
 	if (modal) {
 		return (

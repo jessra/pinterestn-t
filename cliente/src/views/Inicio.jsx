@@ -1,6 +1,7 @@
 import ContenedorImg from "../components/ContenedorImg"
 import VerPublicacion from "../components/VerPublicacion"
 import ModalCrear from "../components/ModalCrear"
+import Alerts from "../components/Alert";
 import { useContext } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
@@ -19,6 +20,7 @@ export function Inicio() {
 		<VerPublicacion/>
 		<ModalCrear />
 		<ContenedorImg post={post} msg={msg}/>
+		<Alerts></Alerts>
 		</>
 	);
 }
