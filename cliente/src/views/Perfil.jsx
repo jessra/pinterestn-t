@@ -8,23 +8,27 @@ export default function Perfil() {
 	useEffect((e) => {
 		listaPostUser();
 	}, []);
-	return (
-		<>
-			<ModalCrear />
-			<button onClick={(e) => cerrarSesion()} className="btn-flat secundario pequeño float-right">
-				<FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
-				<span className="px-2">Cerrar sesión</span>
-			</button>
-			<div className="mt-11 mt-md-1 d-flex justify-center align-items-center">
-				<p className="encabezado-perfil">
-					Publicaciones de
-					<span className="d-block">{activo.user.name}</span>
-				</p>
-				<div className="contenedor-img perfil">
-					<img src={"./src/imagenesTemporales/" + activo.user.img} alt="" />
+	if (activo.token) {
+		return (
+			<>
+				<ModalCrear />
+				<button onClick={(e) => cerrarSesion()} className="btn-flat secundario pequeño float-right">
+					<FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
+					<span className="px-2">Cerrar sesión</span>
+				</button>
+				<div className="mt-11 mt-md-1 d-flex justify-center align-items-center">
+					<p className="encabezado-perfil">
+						Publicaciones de
+						<span className="d-block">{activo.user.name}</span>
+					</p>
+					<div className="contenedor-img perfil">
+						<img src={"./src/imagenesTemporales/" + activo.user.img} alt="" />
+					</div>
 				</div>
-			</div>
-			<ContenedorImg post={post} msg={'Parece que aun no has creado tu primera publicación ¿qué tal si le das al botón de ”Crear”?'}/>
-		</>
-	);
+				<ContenedorImg post={post} msg={'Parece que aun no has creado tu primera publicación ¿qué tal si le das al botón de ”Crear”?'}/>
+			</>
+		);
+	} else {
+		window.location.href = '/LogIn';
+	}
 }
