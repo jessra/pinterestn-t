@@ -7,7 +7,7 @@ import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export function Inicio() {
 	let msg = ''
-	const { post } = useContext(Contexto_Funciones);
+	const { post, activo } = useContext(Contexto_Funciones);
 	const vistaActual = window.location.href
 	const route = vistaActual.split('/')[3]
 	if (route == 'Favoritos') {
@@ -15,12 +15,16 @@ export function Inicio() {
 	} else {
 		msg = 'Ups... parece que aun no hay publicaciones ¿qué tal si empiezas tú por publicar una?'
 	}
-	return (
-		<>
-		<VerPublicacion/>
-		<ModalCrear />
-		<ContenedorImg post={post} msg={msg}/>
-		<Alerts></Alerts>
-		</>
-	);
+	if (activo.token) {
+		return (
+			<>
+			<VerPublicacion/>
+			<ModalCrear />
+			<ContenedorImg post={post} msg={msg}/>
+			<Alerts></Alerts>
+			</>
+		);
+	} else {
+		window.location.href = '/LogIn';
+	}
 }
