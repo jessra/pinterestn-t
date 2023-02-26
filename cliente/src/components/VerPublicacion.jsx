@@ -42,7 +42,9 @@ export default function VerPublicacion() {
 		.then((response) => {
 			console.log(response)
 			if (!response.data.err) {
-				verPost(postSelect.pub.idPub);
+				setTimeout(() => {
+					verPost(postSelect.pub.idPub);
+				}, 5000);
 			} else {
 				console.log(response.data.err)
 			}
@@ -65,7 +67,7 @@ export default function VerPublicacion() {
 									<FontAwesomeIcon icon="fa-solid fa-arrow-left" />
 									<span
 										className="px-2 d-none d-sm-inline"
-										onClick={(e) => (window.location.href = document.referrer)}
+										onClick={(e) => (window.location.href = "/")}
 									>
 										Atrás
 									</span>
