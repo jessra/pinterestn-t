@@ -183,11 +183,8 @@ export function Contexto_DataProvider(props) {
   }
 
   function verPost (id) {
-    const data = {
-      id
-    }
     http
-    .post('/publication', data)
+    .post('/publication', {id: id})
     .then(response => {
       const data = response.data
       setCategoryE(data.cat.nameCat)
